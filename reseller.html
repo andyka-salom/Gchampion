@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Program Reseller - GC Gaming Store</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+    <header>
+        <div class="navbar">
+            <a href="index.html" class="logo"><span>GC</span> GAMING</a>
+            <nav class="nav-links">
+                <a href="index.html">Home</a> <!-- Ganti dengan link ke halaman utama Anda -->
+                <a href="#">Cari Pesanan</a>
+                <a href="#">Daftar Harga</a>
+                <a href="gchampion.html" class="active">Gchampion</a>
+                <a href="reseller.html" class="active">Program Reseller</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="reseller-hero">
+            <h1>Bergabunglah dengan Program Reseller Kami!</h1>
+            <p>Tingkatkan bisnis Anda dan raih keuntungan lebih dengan menjadi reseller resmi produk digital dan top up game dari GC Gaming Store.</p>
+            <a href="#daftar" class="button-cta">Daftar Sekarang & Integrasikan API</a>
+        </div>
+
+        <div class="container">
+            <section class="section">
+                <h2 class="section-title">Bagaimana Cara Kerjanya?</h2>
+                <div class="steps-grid">
+                    <div class="step-card">
+                        <span class="step-number">1</span>
+                        <h3>Registrasi Mudah</h3>
+                        <p>Isi formulir pendaftaran dan tim kami akan segera meninjau aplikasi Anda.</p>
+                    </div>
+                    <div class="step-card">
+                        <span class="step-number">2</span>
+                        <h3>Dapatkan Akses API</h3>
+                        <p>Setelah disetujui, Anda akan menerima API Key unik dan akses ke dokumentasi lengkap.</p>
+                    </div>
+                    <div class="step-card">
+                        <span class="step-number">3</span>
+                        <h3>Integrasi Cepat</h3>
+                        <p>Hubungkan sistem atau website Anda dengan API kami untuk otomatisasi pemesanan produk.</p>
+                    </div>
+                    <div class="step-card">
+                        <span class="step-number">4</span>
+                        <h3>Mulai Berjualan</h3>
+                        <p>Tawarkan produk kami kepada pelanggan Anda dengan harga kompetitif.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Keuntungan Menjadi Reseller</h2>
+                <div class="benefits-grid">
+                    <div class="benefit-card">
+                        <div class="benefit-icon">💰</div>
+                        <h3>Harga Kompetitif</h3>
+                        <p>Dapatkan harga khusus reseller yang memungkinkan Anda meraih margin keuntungan menarik.</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">🚀</div>
+                        <h3>Integrasi API Lengkap</h3>
+                        <p>Akses API yang stabil dan terdokumentasi dengan baik untuk kemudahan integrasi.</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">🛍️</div>
+                        <h3>Produk Variatif</h3>
+                        <p>Akses ke berbagai macam produk digital, top up game, voucher, dan lainnya.</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">🛠️</div>
+                        <h3>Dukungan Teknis</h3>
+                        <p>Tim support kami siap membantu Anda jika mengalami kendala teknis.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section" id="api-details">
+                <h2 class="section-title">Integrasi API untuk Reseller</h2>
+                <div class="api-info-section">
+                    <h3>Panduan Penggunaan API</h3>
+                    <p>API kami dirancang untuk memudahkan Anda mengelola produk dan pesanan secara otomatis. Setelah pendaftaran Anda disetujui, Anda akan mendapatkan <strong>API Key</strong> unik melalui dashboard reseller Anda.</p>
+                    <h4>Fitur Utama API:</h4>
+                    <ul>
+                        <li>Melihat daftar produk dan harga reseller.</li>
+                        <li>Melakukan pemesanan produk secara otomatis.</li>
+                        <li>Mengecek status pesanan.</li>
+                        <li>Melihat riwayat transaksi.</li>
+                    </ul>
+                    <h4>Contoh Endpoint Dasar:</h4>
+                    <p>Berikut adalah beberapa contoh endpoint yang akan Anda gunakan (detail lengkap ada di dokumentasi API):</p>
+                    <div class="code-block">
+                        <span class="comment"># Mendapatkan daftar produk</span><br>
+                        <span class="method">GET</span> <span class="url">/api/v1/reseller/products</span><br>
+                        <span class="keyword">Headers</span>: { <span class="string">"X-API-KEY"</span>: <span class="string">"YOUR_API_KEY_HERE"</span> }
+                    </div>
+                    <div class="code-block">
+                        <span class="comment"># Membuat pesanan baru</span><br>
+                        <span class="method">POST</span> <span class="url">/api/v1/reseller/orders</span><br>
+                        <span class="keyword">Headers</span>: { <span class="string">"X-API-KEY"</span>: <span class="string">"YOUR_API_KEY_HERE"</span>, <span class="string">"Content-Type"</span>: <span class="string">"application/json"</span> }<br>
+                        <span class="keyword">Body</span>: { <span class="string">"product_id"</span>: <span class="string">"VALO100P"</span>, <span class="string">"customer_id"</span>: <span class="string">"USER123"</span>, ... }
+                    </div>
+                    <h4>Dokumentasi API</h4>
+                    <p>Untuk panduan integrasi yang lebih detail, contoh kode, dan daftar lengkap endpoint, silakan kunjungi halaman dokumentasi API kami setelah Anda terdaftar.</p>
+                    <a href="#" class="button-cta" style="font-size: 0.9em; padding: 10px 20px; background-color: var(--accent-primary); color:white;">Lihat Dokumentasi API (Contoh Link)</a>
+                    <p style="font-size: 0.85em; margin-top: 10px;"><em>Catatan: Pastikan API Key Anda disimpan dengan aman dan tidak dibagikan kepada pihak yang tidak berwenang.</em></p>
+                </div>
+            </section>
+
+            <section class="section faq-section">
+                <h2 class="section-title">Pertanyaan Umum (FAQ)</h2>
+                <details class="faq-item">
+                    <summary>Apakah ada biaya pendaftaran?</summary>
+                    <div class="faq-content"><p>Tidak ada biaya pendaftaran untuk bergabung dengan program reseller kami. Program ini gratis!</p></div>
+                </details>
+                <details class="faq-item">
+                    <summary>Bagaimana saya mendapatkan API Key?</summary>
+                    <div class="faq-content"><p>Setelah pendaftaran Anda disetujui oleh tim kami, Anda akan dapat mengakses API Key unik Anda melalui dashboard reseller yang kami sediakan.</p></div>
+                </details>
+                <details class="faq-item">
+                    <summary>Bahasa pemrograman apa yang didukung untuk integrasi API?</summary>
+                    <div class="faq-content"><p>API kami berbasis RESTful dan dapat diakses menggunakan berbagai bahasa pemrograman yang mendukung HTTP request, seperti PHP, Python, JavaScript (Node.js), Java, Ruby, Go, dan lainnya.</p></div>
+                </details>
+                 <details class="faq-item">
+                    <summary>Bagaimana sistem komisinya?</summary>
+                    <div class="faq-content"><p>Anda akan mendapatkan harga khusus reseller untuk setiap produk. Selisih antara harga jual Anda kepada pelanggan dan harga reseller adalah keuntungan Anda. Detail margin akan tersedia di dashboard reseller.</p></div>
+                </details>
+            </section>
+
+            <section class="section" id="daftar">
+                <h2 class="section-title">Siap Bergabung?</h2>
+                <div style="text-align:center; max-width: 600px; margin: 0 auto;">
+                    <p style="color: var(--text-secondary); margin-bottom: 30px;">Langkah selanjutnya adalah mengisi formulir pendaftaran. Tim kami akan meninjau aplikasi Anda dalam 1-2 hari kerja. Jika disetujui, Anda akan mendapatkan email konfirmasi beserta panduan untuk memulai.</p>
+                    <button class="button-cta" id="openResellerRegistrationModalBtn">Daftar Program Reseller Sekarang</button>
+                </div>
+            </section>
+        </div>
+    </main>
+    
+    <div id="resellerRegistrationModal" class="modal-overlay" style="display: none;">
+        <div class="modal-content reseller-modal-content">
+            <span class="modal-close-btn" id="closeResellerRegistrationModalBtn">×</span>
+            <div class="modal-header">
+                <h3 class="modal-title">Formulir Pendaftaran Reseller</h3>
+                <p class="modal-subtitle">Isi data di bawah ini untuk bergabung dengan program kami.</p>
+            </div>
+            <div class="modal-body">
+                <form id="resellerRegistrationForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="resellerName">Nama Lengkap / Bisnis <span class="required-asterisk">*</span></label>
+                            <input type="text" id="resellerName" name="resellerName" placeholder="Contoh: Budi Santoso atau Toko Game Jaya" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group half-width">
+                            <label for="resellerEmail">Alamat Email <span class="required-asterisk">*</span></label>
+                            <input type="email" id="resellerEmail" name="resellerEmail" placeholder="email@anda.com" required>
+                        </div>
+                        <div class="form-group half-width">
+                            <label for="resellerPhone">Nomor Telepon (WA Aktif) <span class="required-asterisk">*</span></label>
+                            <input type="tel" id="resellerPhone" name="resellerPhone" placeholder="08xxxxxxxxxx" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="resellerWebsite">Website / Platform Jualan (Opsional)</label>
+                            <input type="url" id="resellerWebsite" name="resellerWebsite" placeholder="https://tokoanda.com">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="resellerExperience">Pengalaman Berjualan Produk Digital (Singkat)</label>
+                            <textarea id="resellerExperience" name="resellerExperience" rows="3" placeholder="Ceritakan sedikit pengalaman Anda..."></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="checkbox-group">
+                            <input type="checkbox" id="agreeTerms" name="agreeTerms" required>
+                            <span class="checkbox-label">Saya telah membaca dan menyetujui <a href="#syarat-ketentuan-reseller" target="_blank" class="link-inline">Syarat & Ketentuan Program Reseller</a>.</span>
+                             <span class="required-asterisk">*</span>
+                        </label>
+                    </div>
+
+                    <div class="form-feedback" id="resellerFormFeedback" style="display:none;"></div>
+
+                    <div class="form-actions">
+                        <button type="button" class="button-modern button-secondary" id="cancelResellerRegistrationBtn">Batal</button>
+                        <button type="submit" class="button-modern button-submit-reseller" id="submitResellerRegistrationBtn">
+                            <span class="button-text">Kirim Pendaftaran</span>
+                            <span class="button-loader" style="display:none;"></span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-column">
+                <h4 class="logo" style="font-size:1.6em;"><span>GC</span> GAMING</h4>
+                <p>Solusi top up game dan layanan gaming terpercaya Anda. Aman, cepat, dan harga terbaik sejak 2020.</p>
+            </div>
+            <div class="footer-column">
+                <h4>Navigasi Cepat</h4>
+                <ul>
+                    <li><a href="#">Tentang Kami</a></li>
+                    <li><a href="#">Cara Top Up</a></li>
+                    <li><a href="#">Promo Terbaru</a></li>
+                    <li><a href="#">Hubungi CS</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#">Kebijakan Privasi</a></li>
+                    <li><a href="#">Syarat & Ketentuan</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Ikuti Kami</h4>
+                 <p>Instagram, Facebook, dll.</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 GC Gaming. All Rights Reserved. Dibuat dengan ❤️ untuk para Gamers.</p>
+        </div>
+    </footer>
+
+    <script>
+        const openRegBtn = document.getElementById('openResellerRegistrationModalBtn');
+        const closeRegBtn = document.getElementById('closeResellerRegistrationModalBtn');
+        const cancelRegBtn = document.getElementById('cancelResellerRegistrationBtn');
+        const regModal = document.getElementById('resellerRegistrationModal');
+        const regForm = document.getElementById('resellerRegistrationForm');
+        const resellerFormFeedback = document.getElementById('resellerFormFeedback');
+        const submitResellerBtn = document.getElementById('submitResellerRegistrationBtn');
+        const submitResellerBtnText = submitResellerBtn ? submitResellerBtn.querySelector('.button-text') : null;
+        const submitResellerBtnLoader = submitResellerBtn ? submitResellerBtn.querySelector('.button-loader') : null;
+
+        const showResellerFormFeedback = (message, type = 'error') => {
+            if (resellerFormFeedback) {
+                resellerFormFeedback.textContent = message;
+                resellerFormFeedback.className = `form-feedback ${type}`;
+                resellerFormFeedback.style.display = 'block';
+            }
+        };
+
+        const hideResellerFormFeedback = () => {
+            if (resellerFormFeedback) {
+                resellerFormFeedback.style.display = 'none';
+            }
+        };
+
+        const setSubmitButtonState = (isLoading) => {
+            if (submitResellerBtn && submitResellerBtnText && submitResellerBtnLoader) {
+                if (isLoading) {
+                    submitResellerBtnText.style.display = 'none';
+                    submitResellerBtnLoader.style.display = 'inline-block';
+                    submitResellerBtn.disabled = true;
+                } else {
+                    submitResellerBtnText.style.display = 'inline-block';
+                    submitResellerBtnLoader.style.display = 'none';
+                    submitResellerBtn.disabled = false;
+                }
+            }
+        };
+
+        if (openRegBtn && regModal && closeRegBtn) {
+            openRegBtn.addEventListener('click', () => {
+                hideResellerFormFeedback();
+                if(regForm) regForm.reset(); // Pastikan regForm ada sebelum reset
+                regModal.style.display = 'flex';
+                setTimeout(() => { regModal.classList.add('active'); }, 10);
+            });
+
+            const closeTheResellerModal = () => {
+                regModal.classList.remove('active');
+                setTimeout(() => { regModal.style.display = 'none'; }, 300);
+            };
+
+            closeRegBtn.addEventListener('click', closeTheResellerModal);
+            if (cancelRegBtn) {
+                cancelRegBtn.addEventListener('click', closeTheResellerModal);
+            }
+            regModal.addEventListener('click', (event) => {
+                if (event.target === regModal) {
+                    closeTheResellerModal();
+                }
+            });
+        }
+
+        if (regForm) {
+            regForm.addEventListener('submit', async function(event) {
+                event.preventDefault();
+                hideResellerFormFeedback();
+
+                const name = document.getElementById('resellerName').value.trim();
+                const email = document.getElementById('resellerEmail').value.trim();
+                const phone = document.getElementById('resellerPhone').value.trim();
+                const agreeTerms = document.getElementById('agreeTerms').checked;
+
+                if (!name || !email || !phone) {
+                    showResellerFormFeedback('Mohon isi semua field yang wajib diisi (*).', 'error');
+                    return;
+                }
+                if (!agreeTerms) {
+                    showResellerFormFeedback('Anda harus menyetujui Syarat & Ketentuan.', 'error');
+                    return;
+                }
+                
+                setSubmitButtonState(true);
+                await new Promise(resolve => setTimeout(resolve, 2000));
+
+                const formData = new FormData(regForm);
+                const data = {};
+                formData.forEach((value, key) => data[key] = value);
+                console.log("Data Pendaftaran Reseller:", data);
+
+                const isSuccess = Math.random() > 0.2; 
+                setSubmitButtonState(false);
+
+                if (isSuccess) {
+                    showResellerFormFeedback('Pendaftaran Anda telah berhasil diterima! Tim kami akan segera menghubungi Anda.', 'success');
+                    regForm.reset();
+                    // setTimeout(closeTheResellerModal, 3000); // Opsional: tutup otomatis
+                } else {
+                    showResellerFormFeedback('Maaf, terjadi kesalahan saat mengirim pendaftaran. Silakan coba lagi.', 'error');
+                }
+            });
+        }
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

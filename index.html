@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GC Gaming Store - Modern</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+    <header>
+        <div class="navbar">
+            <div class="logo"><span>GC</span> GAMING</div>
+            <nav class="nav-links">
+                <a href="index.html">Home</a> <!-- Ganti dengan link ke halaman utama Anda -->
+                <a href="#">Cari Pesanan</a>
+                <a href="#">Daftar Harga</a>
+                <a href="gchampion.html" class="active">Gchampion</a>
+                <a href="reseller.html" class="active">Program Reseller</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="banner"></div>
+
+        <div class="leaderboard-section-v2 container">
+            <h2 class="section-title-modern">🏆 Top Champions 🏆</h2>
+            <div class="leaderboard-horizontal-chart-v2">
+                <div class="chart-item-v2">
+                    <span class="chart-item-rank">1</span>
+                    <div class="chart-item-avatar">🎮</div>
+                    <div class="chart-item-info">
+                        <span class="chart-item-name">PlayerX_Pro</span>
+                        <span class="chart-item-game">Valorant Master</span>
+                    </div>
+                    <div class="chart-item-bar-container">
+                        <div class="chart-item-bar-fill" style="width: 100%; background: var(--bar-color-1);"></div>
+                    </div>
+                    <span class="chart-item-score">2500</span>
+                </div>
+                <div class="chart-item-v2">
+                    <span class="chart-item-rank">2</span>
+                    <div class="chart-item-avatar">🕹️</div>
+                    <div class="chart-item-info">
+                        <span class="chart-item-name">GamerQueen77</span>
+                        <span class="chart-item-game">MLBB Legend</span>
+                    </div>
+                    <div class="chart-item-bar-container">
+                        <div class="chart-item-bar-fill" style="width: 94%; background: var(--bar-color-2);"></div>
+                    </div>
+                    <span class="chart-item-score">2350</span>
+                </div>
+                <div class="chart-item-v2">
+                    <span class="chart-item-rank">3</span>
+                    <div class="chart-item-avatar">👾</div>
+                    <div class="chart-item-info">
+                        <span class="chart-item-name">NoobMaster69</span>
+                        <span class="chart-item-game">PUBGM Conqueror</span>
+                    </div>
+                    <div class="chart-item-bar-container">
+                        <div class="chart-item-bar-fill" style="width: 84%; background: var(--bar-color-3);"></div>
+                    </div>
+                    <span class="chart-item-score">2100</span>
+                </div>
+                 <div class="chart-item-v2">
+                    <span class="chart-item-rank">4</span>
+                    <div class="chart-item-avatar">🔥</div>
+                    <div class="chart-item-info">
+                        <span class="chart-item-name">ShadowNinja</span>
+                        <span class="chart-item-game">Free Fire Heroic</span>
+                    </div>
+                    <div class="chart-item-bar-container">
+                        <div class="chart-item-bar-fill" style="width: 82%; background: var(--bar-color-4);"></div>
+                    </div>
+                    <span class="chart-item-score">2050</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <h2 class="section-title-modern">🔥 Populer Bulan Ini</h2>
+            <div class="popular-grid">
+                <div class="modern-card">
+                    <img src="https://via.placeholder.com/80x80.png?text=V" alt="Valorant">
+                    <p>Valorant</p><span class="subtitle">FPS Tactical</span>
+                </div>
+                <div class="modern-card">
+                    <img src="https://via.placeholder.com/80x80.png?text=FF" alt="Free Fire">
+                    <p>Free Fire</p><span class="subtitle">Battle Royale</span>
+                </div>
+                <div class="modern-card">
+                    <img src="https://via.placeholder.com/80x80.png?text=GI" alt="Genshin Impact">
+                    <p>Genshin Impact</p><span class="subtitle">Open World RPG</span>
+                </div>
+                <div class="modern-card">
+                    <img src="https://via.placeholder.com/80x80.png?text=ML" alt="Mobile Legends">
+                    <p>Mobile Legends</p><span class="subtitle">MOBA</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="tabs-modern">
+                <button class="tab-button-modern active" onclick="openTab(event, 'topUpGame')">TOP UP GAME</button>
+                <button class="tab-button-modern" onclick="openTab(event, 'paketLainnya')">PAKET LAINNYA</button>
+                <button class="tab-button-modern" onclick="openTab(event, 'voucherGame')">VOUCHER GAME</button>
+            </div>
+
+            <div id="topUpGame" class="tab-content active">
+                <div class="game-grid">
+                     <div class="modern-card"><img src="https://via.placeholder.com/150x120.png?text=AR" alt="Ace Racer" class="game-image-large"><p>Ace Racer</p></div>
+                     <div class="modern-card"><img src="https://via.placeholder.com/150x120.png?text=AOV" alt="Arena of Valor" class="game-image-large"><p>Arena Of Valor</p></div>
+                     <div class="modern-card"><img src="https://via.placeholder.com/150x120.png?text=WW" alt="Wuthering Waves" class="game-image-large"><p>Wuthering Waves</p></div>
+                     <div class="modern-card"><img src="https://via.placeholder.com/150x120.png?text=HSR" alt="Honkai: Star Rail" class="game-image-large"><p>Honkai: Star Rail</p></div>
+                </div>
+                <button class="show-more-btn-modern">Lihat Semua Game</button>
+            </div>
+            <div id="paketLainnya" class="tab-content" style="display:none;">
+                <p style="text-align:center; padding: 20px;">Paket lainnya akan segera hadir!</p>
+            </div>
+            <div id="voucherGame" class="tab-content" style="display:none;">
+                <p style="text-align:center; padding: 20px;">Voucher game akan segera tersedia!</p>
+            </div>
+        </div>
+
+        <div class="testimonials-section-v2 container">
+            <h2 class="section-title-modern">💬 Testimoni Pelanggan</h2>
+            <div class="testimonials-grid-v2">
+                <div class="testimonial-card-v2">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">🧑‍💻</div>
+                        <div class="testimonial-author-info">
+                            <span class="name">Ahmad S.</span>
+                            <span class="title">Valorant Player</span>
+                        </div>
+                    </div>
+                    <p class="testimonial-quote">Pelayanannya cepat & ramah! Top up VP langsung masuk. Pasti balik lagi!</p>
+                    <div class="testimonial-rating">★★★★★</div>
+                </div>
+                <div class="testimonial-card-v2">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">👩‍🚀</div>
+                        <div class="testimonial-author-info">
+                            <span class="name">Siti N.</span>
+                            <span class="title">Genshin Traveler</span>
+                        </div>
+                    </div>
+                    <p class="testimonial-quote">Harga paling oke buat Genesis Crystals. Prosesnya gampang banget. Highly recommended!</p>
+                    <div class="testimonial-rating">★★★★★</div>
+                </div>
+                <div class="testimonial-card-v2">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">👨‍🎨</div>
+                        <div class="testimonial-author-info">
+                            <span class="name">Budi P.</span>
+                            <span class="title">Mobile Legends Pro</span>
+                        </div>
+                    </div>
+                    <p class="testimonial-quote">Joki rank di sini amanah dan hasilnya memuaskan. Akun aman, rank naik. Mantap GC Gaming!</p>
+                    <div class="testimonial-rating">★★★★☆</div>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 30px;">
+                <button class="button-modern button-accent" id="openTestimonialFormBtn">Beri Testimoni Anda!</button>
+            </div>
+        </div>
+
+        <div id="testimonialModal" class="modal-overlay" style="display: none;">
+            <div class="modal-content">
+                <span class="modal-close-btn" id="closeTestimonialFormBtn">×</span>
+                <h3 class="section-title-modern" style="margin-bottom: 20px; font-size:1.5em;">Bagikan Pengalaman Anda</h3>
+                <form id="testimonialForm">
+                    <div class="form-group">
+                        <label for="testiName">Nama Anda:</label>
+                        <input type="text" id="testiName" name="testiName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="testiTitle">Status/Game (cth: Valorant Player):</label>
+                        <input type="text" id="testiTitle" name="testiTitle">
+                    </div>
+                    <div class="form-group">
+                        <label for="testiRating">Rating (1-5):</label>
+                        <select id="testiRating" name="testiRating" required>
+                            <option value="5">★★★★★ (Sangat Puas)</option>
+                            <option value="4">★★★★☆ (Puas)</option>
+                            <option value="3">★★★☆☆ (Cukup)</option>
+                            <option value="2">★★☆☆☆ (Kurang Puas)</option>
+                            <option value="1">★☆☆☆☆ (Tidak Puas)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="testiMessage">Pesan Testimoni:</label>
+                        <textarea id="testiMessage" name="testiMessage" rows="5" required></textarea>
+                    </div>
+                    <div class="form-group" style="text-align: right;">
+                        <button type="submit" class="button-modern button-submit">Kirim Testimoni</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-column">
+                <div class="footer-logo"><span>GC</span> GAMING</div>
+                <p>Solusi top up game dan layanan gaming terpercaya Anda. Aman, cepat, dan harga terbaik sejak 2020.</p>
+            </div>
+            <div class="footer-column">
+                <h4>Navigasi Cepat</h4>
+                <ul>
+                    <li><a href="#">Tentang Kami</a></li>
+                    <li><a href="#">Cara Top Up</a></li>
+                    <li><a href="#">Promo Terbaru</a></li>
+                    <li><a href="#">Hubungi CS</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#">Kebijakan Privasi</a></li>
+                    <li><a href="#">Syarat & Ketentuan</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Metode Pembayaran</h4>
+                <div class="payment-methods">
+                    <img src="https://via.placeholder.com/50x30.png?text=BNI" alt="BNI">
+                    <img src="https://via.placeholder.com/50x30.png?text=GPay" alt="GoPay">
+                    <img src="https://via.placeholder.com/50x30.png?text=OVO" alt="OVO">
+                    <img src="https://via.placeholder.com/50x30.png?text=Dana" alt="Dana">
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 GC Gaming. All Rights Reserved. Dibuat dengan ❤️ untuk para Gamers.</p>
+        </div>
+    </footer>
+
+    <div class="fab-container">
+        <button class="fab-button" aria-label="Chat Support">💬</button>
+        <button class="fab-button" aria-label="Scroll to top" onclick="scrollToTop()">⬆️</button>
+    </div>
+
+    <script>
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+                tabcontent[i].classList.remove("active");
+            }
+            tablinks = document.getElementsByClassName("tab-button-modern");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("active");
+            }
+            document.getElementById(tabName).style.display = "block";
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const firstTabButton = document.querySelector('.tab-button-modern');
+            if(firstTabButton) {
+                firstTabButton.click();
+            }
+
+            const openTestimonialFormBtn = document.getElementById('openTestimonialFormBtn');
+            const closeTestimonialFormBtn = document.getElementById('closeTestimonialFormBtn');
+            const testimonialModal = document.getElementById('testimonialModal');
+            const testimonialForm = document.getElementById('testimonialForm');
+
+            if (openTestimonialFormBtn && testimonialModal && closeTestimonialFormBtn) {
+                openTestimonialFormBtn.addEventListener('click', () => {
+                    testimonialModal.style.display = 'flex';
+                    setTimeout(() => {
+                        testimonialModal.classList.add('active');
+                    }, 10);
+                });
+
+                closeTestimonialFormBtn.addEventListener('click', closeModal);
+                testimonialModal.addEventListener('click', (event) => {
+                    if (event.target === testimonialModal) {
+                        closeModal();
+                    }
+                });
+            }
+
+            function closeModal() {
+                testimonialModal.classList.remove('active');
+                setTimeout(() => {
+                    testimonialModal.style.display = 'none';
+                }, 300);
+            }
+
+            if (testimonialForm) {
+                testimonialForm.addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    const name = document.getElementById('testiName').value;
+                    const title = document.getElementById('testiTitle').value;
+                    const rating = document.getElementById('testiRating').value;
+                    const message = document.getElementById('testiMessage').value;
+
+                    console.log("Testimoni Diterima:", { name, title, rating, message });
+
+                    const testimonialsGrid = document.querySelector('.testimonials-grid-v2');
+                    if (testimonialsGrid) {
+                        const newTestimonialCard = document.createElement('div');
+                        newTestimonialCard.classList.add('testimonial-card-v2');
+                        let ratingStars = '';
+                        for (let i = 0; i < parseInt(rating); i++) { ratingStars += '★'; }
+                        for (let i = parseInt(rating); i < 5; i++) { ratingStars += '☆'; }
+
+                        newTestimonialCard.innerHTML = `
+                            <div class="testimonial-header">
+                                <div class="testimonial-avatar">👤</div>
+                                <div class="testimonial-author-info">
+                                    <span class="name">${name}</span>
+                                    <span class="title">${title || 'Pelanggan'}</span>
+                                </div>
+                            </div>
+                            <p class="testimonial-quote">${message}</p>
+                            <div class="testimonial-rating">${ratingStars}</div>
+                        `;
+                        testimonialsGrid.insertBefore(newTestimonialCard, testimonialsGrid.firstChild);
+                    }
+                    alert('Terima kasih atas testimoni Anda!');
+                    testimonialForm.reset();
+                    closeModal();
+                });
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+    </script>
+</body>
+</html>
