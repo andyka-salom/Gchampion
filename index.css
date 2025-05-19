@@ -743,3 +743,1112 @@ footer {
     width: 20px; height: 20px; animation: spin 1s linear infinite; display: inline-block;
 }
 @keyframes spin { to { transform: rotate(360deg); } }
+/* ============== GLOBAL RESETS & BASE STYLES (Pastikan sudah ada) ============== */
+/* ... (semua style global Anda) ... */
+
+/* ============== HEADER & NAVIGATION (Modifikasi) ============== */
+header {
+    background-color: var(--bg-secondary);
+    padding: 15px 0;
+    box-shadow: var(--shadow-soft);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between; /* PENTING untuk memisahkan logo+nav kiri dengan nav kanan */
+    align-items: center;
+    width: 90%;
+    max-width: 1100px; /* Atau sesuai desain Anda */
+    margin: 0 auto;
+}
+
+.logo { /* Pastikan sudah ada */
+    font-size: 1.9em;
+    font-weight: 700;
+    color: var(--accent-primary);
+    text-decoration: none;
+}
+.logo span {
+    color: var(--accent-secondary);
+}
+
+.nav-links-left a,
+.nav-links-right a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    margin-left: 20px; /* Jarak antar link */
+    font-weight: 500;
+    transition: color 0.3s;
+}
+.nav-links-left a:hover,
+.nav-links-left a.active,
+.nav-links-right a:hover {
+    color: var(--accent-primary);
+}
+.nav-links-left a:first-child {
+    margin-left: 0; /* Hapus margin untuk link pertama di kiri jika logo terpisah */
+}
+
+.nav-links-right {
+    display: flex;
+    align-items: center;
+}
+
+.nav-search-icon {
+    font-size: 1.2em; /* Sesuaikan ukuran ikon */
+    margin-right: 15px; /* Jarak dari tombol login */
+}
+
+.button-modern.button-login-register {
+    padding: 8px 18px; /* Lebih kecil dari button standar */
+    font-size: 0.9em;
+    background-color: var(--accent-primary);
+    color: white;
+    border: none;
+}
+.button-modern.button-login-register:hover {
+    background-color: #0087cc;
+}
+
+/* ============== NEWS PAGE LAYOUT (Baru) ============== */
+.news-page-layout {
+    display: flex;
+    gap: 30px; /* Jarak antara konten utama dan sidebar */
+    padding-top: 30px; /* Jarak dari header */
+}
+
+.news-main-content {
+    flex: 3; /* Konten utama mengambil porsi lebih besar */
+    min-width: 0; /* Untuk mencegah overflow jika konten terlalu panjang */
+}
+
+.news-sidebar {
+    flex: 1; /* Sidebar mengambil porsi lebih kecil */
+    min-width: 0;
+    /* Perkiraan lebar sidebar dari screenshot ~300-350px */
+    max-width: 350px; /* Batasi lebar maksimum sidebar */
+}
+
+.news-page-title {
+    font-size: 2.2em; /* Sesuaikan dengan screenshot */
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 25px;
+    border-bottom: 2px solid var(--accent-primary);
+    padding-bottom: 10px;
+    display: inline-block; /* Agar border-bottom tidak full width */
+}
+
+/* Featured Article Large */
+.featured-article-large {
+    background-color: var(--bg-secondary); /* Atau transparent jika container punya bg */
+    border-radius: var(--border-radius-md);
+    overflow: hidden;
+    margin-bottom: 30px;
+    box-shadow: var(--shadow-soft);
+}
+
+.featured-article-image-link {
+    display: block;
+}
+.featured-article-image {
+    width: 100%;
+    height: auto; /* Biarkan rasio gambar terjaga */
+    max-height: 450px; /* Batasi tinggi maksimum gambar unggulan */
+    object-fit: cover;
+    display: block;
+    border-bottom: 3px solid var(--accent-primary); /* Garis pemisah jika perlu */
+}
+
+.featured-article-content {
+    padding: 20px;
+}
+
+.article-meta-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+.article-meta-tags.bottom-tags {
+    margin-top: 15px;
+    margin-bottom: 0;
+}
+
+.meta-tag {
+    background-color: var(--bg-tertiary); /* Warna pill tag */
+    color: var(--text-secondary);
+    padding: 5px 10px;
+    border-radius: var(--border-radius-sm);
+    font-size: 0.75em; /* Ukuran font kecil untuk tag */
+    font-weight: 500;
+    display: inline-flex; /* Agar ikon dan teks sejajar */
+    align-items: center;
+}
+.meta-tag i {
+    margin-right: 5px;
+}
+.meta-tag.date-tag { /* Warna khusus jika perlu */
+   /* background-color: var(--accent-secondary); color: white; */
+}
+
+
+.featured-article-title {
+    font-size: 1.8em; /* Sesuaikan */
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+    line-height: 1.3;
+}
+.featured-article-title a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+.featured-article-title a:hover {
+    color: var(--accent-primary);
+}
+
+.featured-article-excerpt {
+    font-size: 0.95em;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* Supporting News Grid (artikel kecil di bawah/samping featured) */
+.supporting-news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* 2-3 kolom */
+    gap: 20px;
+    margin-top: 30px; /* Jarak dari featured article */
+}
+
+.news-card-small {
+    background-color: var(--bg-secondary);
+    border-radius: var(--border-radius-sm); /* Sedikit lebih kecil dari featured */
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex; /* Jika ingin gambar di kiri, teks di kanan untuk card yg sangat kecil */
+    flex-direction: column; /* Default: gambar di atas, teks di bawah */
+}
+.news-card-small:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-medium);
+}
+
+.news-card-small-image-link { display: block; }
+.news-card-small-image {
+    width: 100%;
+    height: 150px; /* Tinggi gambar untuk card kecil */
+    object-fit: cover;
+}
+
+.news-card-small-content {
+    padding: 15px;
+}
+
+.news-card-small-title {
+    font-size: 1.05em; /* Lebih kecil */
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+    line-height: 1.4;
+    /* Batasi jumlah baris jika perlu */
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Tampilkan maksimal 2 baris */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-height: 2.8em; /* (line-height * line-clamp) agar layout stabil */
+}
+.news-card-small-title a {
+    color: inherit; text-decoration: none;
+}
+.news-card-small-title a:hover {
+    color: var(--accent-primary);
+}
+
+.news-card-small-date {
+    font-size: 0.8em;
+    color: var(--text-secondary);
+}
+.news-card-small-date i { margin-right: 4px; }
+
+
+/* News Sidebar */
+.sidebar-title {
+    font-size: 1.4em;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.sidebar-news-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Jarak antar item di sidebar */
+}
+
+.sidebar-news-item {
+    display: flex;
+    gap: 12px; /* Jarak antara thumbnail dan info */
+    text-decoration: none;
+    background-color: var(--bg-secondary); /* Latar belakang item sidebar */
+    padding: 10px;
+    border-radius: var(--border-radius-sm);
+    transition: background-color 0.3s;
+}
+.sidebar-news-item:hover {
+    background-color: var(--bg-tertiary); /* Warna hover */
+}
+
+.sidebar-news-thumbnail {
+    width: 80px; /* Lebar thumbnail */
+    height: 60px; /* Tinggi thumbnail */
+    object-fit: cover;
+    border-radius: var(--border-radius-sm);
+    flex-shrink: 0; /* Agar thumbnail tidak menyusut */
+}
+
+.sidebar-news-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Tengahkan teks jika tinggi thumbnail beda */
+    flex-grow: 1;
+    min-width: 0; /* Untuk text-overflow */
+}
+
+.sidebar-news-title {
+    font-size: 0.9em; /* Font lebih kecil */
+    font-weight: 500;
+    color: var(--text-primary);
+    line-height: 1.4;
+    margin-bottom: 4px;
+    /* Batasi jumlah baris untuk judul sidebar */
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Maksimal 2 baris */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.sidebar-news-date {
+    font-size: 0.75em;
+    color: var(--text-secondary);
+}
+.sidebar-news-date i { margin-right: 4px;}
+
+/* FAB (Floating Action Button) - Pastikan sudah ada atau tambahkan jika belum */
+.fab-container {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    z-index: 100;
+}
+.fab-button {
+    background-color: var(--accent-primary); /* Warna seperti di screenshot */
+    color: white;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8em; /* Ukuran ikon */
+    cursor: pointer;
+    box-shadow: var(--shadow-medium);
+    transition: background-color 0.3s, transform 0.2s;
+}
+.fab-button:hover {
+    background-color: #0056b3; /* Warna biru lebih gelap untuk hover */
+    transform: scale(1.1);
+}
+
+
+/* RESPONSIVE ADJUSTMENTS (PENTING) */
+@media (max-width: 992px) { /* Tablet */
+    .news-page-layout {
+        flex-direction: column; /* Konten utama dan sidebar jadi satu kolom */
+    }
+    .news-sidebar {
+        max-width: 100%; /* Sidebar full width di tablet/mobile */
+        margin-top: 30px;
+    }
+    .featured-article-title {
+        font-size: 1.6em;
+    }
+    .supporting-news-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+}
+
+@media (max-width: 768px) { /* Mobile */
+
+    .nav-links-left a {
+        margin-left: 10px;
+        font-size: 0.9em;
+    }
+    .nav-links-right .button-modern.button-login-register {
+        padding: 6px 12px;
+        font-size: 0.8em;
+    }
+    .news-page-title {
+        font-size: 1.8em;
+    }
+    .featured-article-title {
+        font-size: 1.4em;
+    }
+    .supporting-news-grid {
+        grid-template-columns: 1fr; /* Satu kolom untuk artikel kecil di mobile */
+    }
+    .sidebar-news-item {
+        /* Mungkin perlu penyesuaian layout jika terlalu sempit */
+    }
+}
+
+
+
+/* ============== GCHAMPION PAGE SPECIFIC STYLES ============== */
+
+/* GChampion Custom Hero Section */
+.gchampion-custom-hero {
+    background: linear-gradient(rgba(26, 29, 36, 0.9), rgba(26, 29, 36, 0.95)), url('https://via.placeholder.com/1200x500.png?text=GChampion+Background') no-repeat center center/cover;
+    color: white;
+    padding: 60px 20px 70px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 5px solid var(--accent-gold);
+}
+.gchampion-hero-content {
+    max-width: 800px;
+}
+.gchampion-logo-hero {
+    max-width: 250px; /* Sesuaikan ukuran logo */
+    height: auto;
+    margin-bottom: 20px;
+}
+.gchampion-custom-hero h1 {
+    font-size: 3em; /* Sedikit lebih kecil dari hero utama GChampion sebelumnya */
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: var(--accent-gold);
+    text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+.gchampion-hero-invitation {
+    font-size: 1.2em;
+    color: var(--text-primary);
+    margin-bottom: 30px;
+    line-height: 1.7;
+}
+/* .button-hero-gchampion sudah ada, bisa dipakai ulang atau buat variasi */
+
+
+/* Timeline Section - GChampion */
+.gchampion-timeline-grid { /* Menggunakan class schedule-gchampion dari sebelumnya */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Konsisten */
+}
+.schedule-phase-card.timeline-item .phase-icon i {
+    font-size: 2.5em; /* Ukuran ikon Font Awesome */
+    color: var(--accent-primary);
+    margin-bottom: 15px;
+    display: block;
+}
+.schedule-phase-card.timeline-item.active .phase-icon i {
+    color: var(--accent-gold);
+}
+
+
+/* Karakter & Meta Section */
+.karakter-meta-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+    margin-top: 20px;
+}
+.karakter-card {
+    background-color: var(--bg-secondary);
+    border-radius: var(--border-radius-md);
+    padding: 20px;
+    text-align: center;
+    box-shadow: var(--shadow-soft);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.karakter-image {
+    width: 100%;
+    max-width: 280px; /* Kontrol ukuran gambar karakter */
+    height: auto;
+    border-radius: var(--border-radius-sm);
+    margin-bottom: 20px;
+    object-fit: cover; /* Atau contain jika rasio penting */
+}
+.karakter-info h3 {
+    font-size: 1.5em;
+    color: var(--accent-primary);
+    margin-bottom: 10px;
+}
+.karakter-info .karakter-name {
+    font-size: 1.1em;
+    color: var(--text-primary);
+    margin-bottom: 15px;
+}
+.karakter-button {
+    width: 100%;
+    max-width: 300px; /* Agar tombol tidak terlalu lebar */
+    margin-top: 10px;
+    padding: 12px 20px;
+}
+.karakter-button i {
+    margin-right: 8px;
+}
+
+/* Leaderboard Section - GChampion */
+.gchampion-leaderboard-section {
+    background-color: var(--bg-tertiary); /* Beri background berbeda */
+    padding: 30px;
+    border-radius: var(--border-radius-md);
+}
+.leaderboard-game-title {
+    font-size: 1.8em;
+    color: var(--accent-gold);
+    margin-bottom: 20px;
+    text-align: center;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+}
+.leaderboard-hsr, .leaderboard-mlbb {
+    margin-bottom: 40px;
+}
+.leaderboard-hsr:last-child, .leaderboard-mlbb:last-child {
+    margin-bottom: 0;
+}
+.leaderboard-tables-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+.leaderboard-table-wrapper h4 {
+    font-size: 1.2em;
+    color: var(--text-primary);
+    margin-bottom: 15px;
+    text-align: center;
+}
+.leaderboard-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--bg-secondary);
+    border-radius: var(--border-radius-sm);
+    overflow: hidden; /* Untuk border-radius */
+    box-shadow: var(--shadow-soft);
+}
+.leaderboard-table th, .leaderboard-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+.leaderboard-table th {
+    background-color: var(--bg-tertiary); /* Warna header tabel */
+    color: var(--accent-primary);
+    font-weight: 600;
+}
+.leaderboard-table tbody tr:last-child td {
+    border-bottom: none;
+}
+.leaderboard-table tbody tr:hover {
+    background-color: #373d4a; /* Hover row */
+}
+
+.leaderboard-mlbb h4 { /* Untuk judul "Update Squad Terdaftar" */
+    font-size: 1.3em;
+    color: var(--text-primary);
+    margin-bottom: 15px;
+}
+.squad-list {
+    list-style: none;
+    padding-left: 0;
+}
+.squad-list li {
+    background-color: var(--bg-secondary);
+    padding: 10px 15px;
+    margin-bottom: 8px;
+    border-radius: var(--border-radius-sm);
+    color: var(--text-secondary);
+    font-size: 1em;
+}
+.squad-list li i {
+    margin-right: 10px;
+    color: var(--accent-primary);
+}
+
+/* Cara Mendapatkan Tiket Section */
+.get-ticket-section h3.section-title-gchampion { /* override agar tidak terlalu besar */
+    font-size: 2.2em !important;
+    margin-bottom: 30px !important;
+}
+.ticket-info-flex {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap; /* Agar responsif */
+    justify-content: center;
+}
+.ticket-method {
+    background-color: var(--bg-secondary);
+    padding: 25px;
+    border-radius: var(--border-radius-md);
+    text-align: center;
+    flex: 1;
+    min-width: 280px; /* Agar tidak terlalu sempit di mobile */
+    box-shadow: var(--shadow-soft);
+}
+.ticket-icon {
+    font-size: 3em;
+    color: var(--accent-gold);
+    margin-bottom: 15px;
+}
+.ticket-method h4 {
+    font-size: 1.3em;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+}
+.ticket-method p {
+    font-size: 0.95em;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+.social-media-links-tiket {
+    margin-top: 20px;
+}
+.social-media-links-tiket a {
+    color: var(--accent-primary);
+    font-size: 1.8em;
+    margin: 0 10px;
+    transition: color 0.3s, transform 0.2s;
+}
+.social-media-links-tiket a:hover {
+    color: var(--accent-gold);
+    transform: scale(1.1);
+}
+
+/* Kontak & Topup Buttons Section */
+.contact-topup-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap; /* Responsif */
+    margin-top: 20px; /* Jarak dari section sebelumnya */
+}
+.button-whatsapp { /* Variasi tombol */
+    background-color: #25D366; /* Warna WhatsApp */
+    color: white;
+    padding: 15px 30px;
+    font-size: 1.1em;
+}
+.button-whatsapp:hover {
+    background-color: #1DAE50;
+}
+.button-accent-alt { /* Variasi tombol */
+    background-color: var(--accent-secondary);
+    color: white;
+    padding: 15px 30px;
+    font-size: 1.1em;
+}
+.button-accent-alt:hover {
+    background-color: #e02f4d;
+}
+.contact-topup-buttons .button-modern i {
+    margin-right: 10px;
+}
+
+
+/* FAQ Section - GChampion */
+.faq-section-gchampion {
+    /* Mirip FAQ Reseller tapi mungkin dengan styling unik jika perlu */
+}
+.faq-container-gchampion { /* Mirip .faq-section .faq-item di reseller */
+    max-width: 800px;
+    margin: 0 auto;
+}
+.faq-item-gchampion {
+    background-color: var(--bg-secondary);
+    margin-bottom: 15px;
+    border-radius: var(--border-radius-sm);
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+}
+.faq-item-gchampion summary {
+    padding: 18px 25px;
+    font-weight: 600;
+    font-size: 1.1em;
+    color: var(--text-primary);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.2s;
+}
+.faq-item-gchampion summary:hover {
+    background-color: var(--bg-tertiary);
+}
+.faq-item-gchampion summary::after { /* Indikator open/close */
+    content: '+';
+    font-size: 1.6em;
+    color: var(--accent-primary);
+    transition: transform 0.2s;
+}
+.faq-item-gchampion[open] summary::after {
+    content: '\2212'; /* Minus sign */
+    transform: rotate(180deg);
+}
+.faq-content-gchampion {
+    padding: 20px 25px;
+    color: var(--text-secondary);
+    border-top: 1px solid var(--border-color);
+    background-color: var(--bg-tertiary); /* Sedikit beda dari summary */
+    line-height: 1.7;
+}
+.faq-content-gchampion p {
+    margin-bottom: 10px;
+}
+.faq-content-gchampion p:last-child {
+    margin-bottom: 0;
+}/* ============== ROOT VARIABLES (Mungkin perlu disesuaikan) ============== */
+:root {
+    --bg-primary: #0F121A; /* Sedikit lebih gelap dan modern */
+    --bg-secondary: #1A1E2C; /* Untuk kartu dan panel */
+    --bg-tertiary: #2A2F45; /* Untuk elemen sekunder atau hover */
+    --bg-glass: rgba(26, 30, 44, 0.6); /* Warna dasar untuk glassmorphism */
+    --blur-effect: blur(10px);
+    --accent-primary: #00A9FF; /* Biru cerah */
+    --accent-secondary: #FF4081; /* Pink/Magenta sebagai aksen kedua */
+    --accent-gold: #FFD700; /* Emas yang lebih vibrant */
+    --text-primary: #EAEAEA;
+    --text-secondary: #A0A8C4; /* Lebih lembut */
+    --border-color: rgba(160, 168, 196, 0.2); /* Border yang lebih halus */
+    --border-color-strong: rgba(160, 168, 196, 0.4);
+
+    --border-radius-sm: 8px;
+    --border-radius-md: 12px;
+    --border-radius-lg: 16px;
+
+    --shadow-soft: 0 4px 15px rgba(0, 0, 0, 0.2);
+    --shadow-medium: 0 8px 25px rgba(0, 0, 0, 0.3);
+    --shadow-strong: 0 10px 30px rgba(0,0,0,0.35);
+
+    /* Gradien Modern */
+    --gradient-accent: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+    --gradient-gold: linear-gradient(135deg, #FFD700 0%, #FFB800 100%);
+
+    /* Bar Chart (bisa pakai gradient juga) */
+    --bar-rank-1: var(--gradient-gold);
+    --bar-rank-2: linear-gradient(90deg, #C0C0C0, #A9A9A9);
+    --bar-rank-3: linear-gradient(90deg, #CD7F32, #A0522D);
+    --bar-rank-default: var(--accent-primary);
+}
+
+/* ============== GCHAMPION PAGE MODERN STYLES ============== */
+
+/* GChampion Custom Hero Section - MODERN TOUCH */
+.gchampion-custom-hero {
+    background: linear-gradient(rgba(15, 18, 26, 0.95), rgba(15, 18, 26, 0.85)), url('https://via.placeholder.com/1920x700.png?text=Epic+GChampion+Arena') no-repeat center center/cover; /* Gambar background yang lebih epik */
+    color: white;
+    padding: 80px 20px 90px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 5px solid transparent;
+    border-image: var(--gradient-accent) 1; /* Border dengan gradien */
+    position: relative;
+    overflow: hidden; /* Untuk efek pseudo-element jika ada */
+}
+.gchampion-custom-hero::before { /* Efek overlay subtle */
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(circle, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.5) 100%);
+    z-index: 1;
+}
+.gchampion-hero-content {
+    max-width: 850px;
+    position: relative; /* Agar di atas pseudo-element */
+    z-index: 2;
+}
+.gchampion-logo-hero {
+    max-width: 280px;
+    height: auto;
+    margin-bottom: 25px;
+    filter: drop-shadow(0 0 15px rgba(var(--accent-gold), 0.5)); /* Bayangan logo */
+}
+.gchampion-custom-hero h1 {
+    font-size: 3.8em;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: white; /* Teks putih agar kontras dengan background */
+    text-shadow: 0 3px 10px rgba(0,0,0,0.5);
+    letter-spacing: 1px;
+}
+.gchampion-hero-invitation {
+    font-size: 1.3em;
+    color: var(--text-primary);
+    margin-bottom: 35px;
+    line-height: 1.8;
+    font-weight: 300; /* Font lebih ringan */
+}
+.gchampion-custom-hero .button-hero-gchampion { /* MODIFIKASI Tombol Hero */
+    padding: 18px 40px;
+    font-size: 1.1em;
+    font-weight: 600;
+    background: var(--gradient-accent);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius-md);
+    box-shadow: 0 5px 15px rgba(0, 169, 255, 0.3), 0 5px 15px rgba(255, 64, 129, 0.3);
+    transition: all 0.3s ease;
+}
+.gchampion-custom-hero .button-hero-gchampion:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(0, 169, 255, 0.4), 0 8px 25px rgba(255, 64, 129, 0.4);
+}
+
+/* Section Title GChampion - MODERN TOUCH */
+.section-title-gchampion {
+    font-size: 2.5em; /* Sedikit lebih besar */
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 50px; /* Lebih banyak spasi */
+    text-align: center;
+    position: relative;
+    padding-bottom: 20px;
+}
+.section-title-gchampion::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px; /* Lebih panjang */
+    height: 4px; /* Lebih tebal */
+    background: var(--gradient-accent); /* Garis bawah dengan gradien */
+    border-radius: 3px;
+}
+
+
+/* Timeline Cards - GLASSMORPHISM STYLE */
+.schedule-phase-card.timeline-item {
+    background: var(--bg-glass);
+    backdrop-filter: var(--blur-effect);
+    -webkit-backdrop-filter: var(--blur-effect); /* Safari support */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Border halus untuk efek kaca */
+    border-radius: var(--border-radius-lg); /* Lebih rounded */
+    padding: 30px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37); /* Bayangan untuk depth */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.schedule-phase-card.timeline-item:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.45);
+}
+.schedule-phase-card.timeline-item .phase-icon i {
+    font-size: 3em; /* Ikon lebih besar */
+    background: -webkit-linear-gradient(var(--accent-primary), var(--accent-secondary)); /* Gradien untuk ikon */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 20px;
+}
+.schedule-phase-card.timeline-item.active {
+    border: 1px solid var(--accent-gold); /* Border aktif lebih menonjol */
+    box-shadow: 0 0 25px rgba(255, 215, 0, 0.3);
+}
+.schedule-phase-card.timeline-item.active .phase-icon i {
+    background: -webkit-linear-gradient(var(--accent-gold), #FFB800);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.schedule-phase-card.timeline-item h4 {
+    font-size: 1.4em;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+}
+.schedule-phase-card.timeline-item p {
+    font-size: 0.95em;
+    color: var(--text-secondary);
+    line-height: 1.7;
+}
+.schedule-phase-card.timeline-item .date-range {
+    font-size: 0.9em;
+    color: var(--accent-gold);
+    font-weight: 500;
+    margin-top: 15px;
+    display: block;
+}
+.phase-status { /* Style status "Saat Ini" */
+    background: var(--accent-gold);
+    color: var(--bg-primary);
+    padding: 6px 12px;
+    border-radius: var(--border-radius-sm);
+    font-size: 0.8em;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+
+/* Karakter & Meta Cards - MODERN ELEVATED STYLE */
+.karakter-card {
+    background-color: var(--bg-secondary);
+    border-radius: var(--border-radius-lg);
+    padding: 25px;
+    text-align: center;
+    box-shadow: var(--shadow-medium);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.karakter-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-strong);
+}
+.karakter-image {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    border-radius: var(--border-radius-md);
+    margin-bottom: 25px;
+    object-fit: cover;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+.karakter-info h3 {
+    font-size: 1.6em;
+    background: var(--gradient-accent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+.karakter-info .karakter-name {
+    font-size: 1.15em;
+    color: var(--text-primary);
+    margin-bottom: 20px;
+}
+.karakter-button { /* Tombol di dalam card karakter */
+    width: 100%;
+    max-width: 280px;
+    margin-top: 15px;
+    padding: 14px 22px;
+    font-size: 1em;
+    font-weight: 500;
+    background: var(--accent-primary); /* Atau var(--gradient-accent) */
+    border: none;
+    transition: background-color 0.3s, transform 0.2s;
+}
+.karakter-button:hover {
+    background: var(--accent-secondary); /* Atau darken gradient */
+    transform: translateY(-2px);
+}
+
+
+/* Leaderboard Section - MODERN TABLE & LIST */
+.gchampion-leaderboard-section {
+    background-color: var(--bg-secondary); /* Lebih gelap dari body */
+    padding: 40px;
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-strong);
+}
+.leaderboard-game-title {
+    font-size: 2em;
+    background: var(--gradient-gold);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 30px;
+    text-align: center;
+    border-bottom: 2px solid var(--accent-gold);
+    padding-bottom: 15px;
+    font-weight: 600;
+}
+.leaderboard-table-wrapper h4 {
+    font-size: 1.4em;
+    color: var(--text-primary);
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: 500;
+}
+.leaderboard-table {
+    width: 100%;
+    border-collapse: separate; /* Untuk border-spacing */
+    border-spacing: 0 8px; /* Jarak antar baris */
+    background-color: transparent; /* Tabel transparan, baris diberi background */
+    box-shadow: none;
+}
+.leaderboard-table th, .leaderboard-table td {
+    padding: 15px 18px;
+    text-align: left;
+    border-bottom: none; /* Hapus border bawah default */
+}
+.leaderboard-table thead tr {
+    background-color: var(--bg-tertiary); /* Header tabel */
+}
+.leaderboard-table th {
+    color: var(--accent-primary);
+    font-weight: 600;
+    font-size: 1.05em;
+}
+.leaderboard-table th:first-child { border-radius: var(--border-radius-sm) 0 0 var(--border-radius-sm); }
+.leaderboard-table th:last-child { border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0; }
+
+.leaderboard-table tbody tr {
+    background-color: var(--bg-primary); /* Background baris */
+    border-radius: var(--border-radius-sm);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+.leaderboard-table tbody tr:hover {
+    background-color: var(--bg-tertiary);
+    transform: scale(1.02); /* Efek hover pada baris */
+}
+.leaderboard-table td:first-child { border-radius: var(--border-radius-sm) 0 0 var(--border-radius-sm); }
+.leaderboard-table td:last-child { border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0; }
+
+.leaderboard-mlbb h4 {
+    font-size: 1.5em;
+    color: var(--text-primary);
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+.squad-list li {
+    background-color: var(--bg-primary); /* Mirip baris tabel */
+    padding: 12px 18px;
+    margin-bottom: 10px;
+    border-radius: var(--border-radius-sm);
+    color: var(--text-secondary);
+    font-size: 1.05em;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+.squad-list li:hover {
+    background-color: var(--bg-tertiary);
+    transform: translateX(5px);
+}
+.squad-list li i { color: var(--accent-secondary); }
+
+
+/* Cara Mendapatkan Tiket - MODERN CARDS */
+.get-ticket-section .section-title-gchampion { font-size: 2.5em !important; margin-bottom: 40px !important;}
+.ticket-method {
+    background-color: var(--bg-secondary);
+    padding: 30px; /* Lebih banyak padding */
+    border-radius: var(--border-radius-lg);
+    text-align: center;
+    flex: 1;
+    min-width: 300px;
+    box-shadow: var(--shadow-medium);
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+}
+.ticket-method:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-strong);
+    border-color: var(--accent-primary);
+}
+.ticket-icon {
+    font-size: 3.5em;
+    margin-bottom: 20px;
+    background: var(--gradient-gold);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.ticket-method h4 {
+    font-size: 1.5em;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+.ticket-method p { font-size: 1em; }
+.social-media-links-tiket a {
+    color: var(--text-secondary); /* Warna ikon sosial media */
+    font-size: 2em;
+}
+.social-media-links-tiket a:hover { color: var(--accent-primary); }
+
+
+/* Kontak & Topup Buttons - MODERN & BOLD */
+.contact-topup-buttons .button-modern {
+    padding: 16px 35px;
+    font-size: 1.15em;
+    font-weight: 600;
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-soft);
+    transition: all 0.3s ease;
+    border: none; /* Hapus border default jika ada */
+}
+.contact-topup-buttons .button-modern:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: var(--shadow-medium);
+}
+.button-whatsapp {
+    background: linear-gradient(135deg, #25D366, #128C7E); /* Gradien WhatsApp */
+}
+.button-whatsapp:hover {
+    background: linear-gradient(135deg, #1DAE50, #0F7A6E);
+}
+.button-accent-alt {
+    background: var(--gradient-accent); /* Menggunakan gradien utama */
+}
+.button-accent-alt:hover {
+    /* Bisa di-adjust opacity atau brightness gradient */
+    filter: brightness(1.1);
+}
+
+
+/* FAQ Section - MODERN ACCORDION */
+.faq-item-gchampion {
+    background-color: var(--bg-secondary);
+    margin-bottom: 18px;
+    border-radius: var(--border-radius-md);
+    border: 1px solid var(--border-color);
+    transition: box-shadow 0.3s ease;
+}
+.faq-item-gchampion:hover {
+    box-shadow: 0 0 15px rgba(var(--accent-primary-rgb, 0, 169, 255), 0.2); /* Tambahkan --accent-primary-rgb di :root jika perlu */
+}
+.faq-item-gchampion summary {
+    padding: 20px 28px;
+    font-weight: 500; /* Tidak terlalu tebal */
+    font-size: 1.15em;
+    color: var(--text-primary);
+}
+.faq-item-gchampion summary::after {
+    content: '\f078'; /* Chevron down Font Awesome */
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    font-size: 0.9em;
+    color: var(--accent-primary);
+    transition: transform 0.3s ease;
+}
+.faq-item-gchampion[open] summary::after {
+    transform: rotate(180deg);
+}
+.faq-item-gchampion[open] summary {
+    background-color: var(--bg-tertiary); /* Latar belakang saat terbuka */
+    color: var(--accent-primary);
+}
+.faq-content-gchampion {
+    padding: 25px 30px; /* Padding lebih banyak */
+    background-color: var(--bg-primary); /* Background konten FAQ */
+    border-top: 1px solid var(--border-color-strong);
+}
+.faq-content-gchampion p {
+    font-size: 1em;
+    color: var(--text-secondary);
+}

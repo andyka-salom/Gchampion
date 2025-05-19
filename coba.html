@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CleanCycle - Aplikasi Daur Ulang Kekinian</title>
+    <!-- Google Fonts: Open Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        :root {
+            --primary-green: #2E7D32; /* Slightly adjusted primary green */
+            --accent-green: #66BB6A;  /* Softer accent green */
+            --bright-accent: #9CCC65; /* Lime Green for highlights */
+            --light-bg: #F8F9FA;      /* Lighter background */
+            --card-bg: #FFFFFF;
+            --text-dark: #37474F;     /* Darker, slightly bluish gray for text */
+            --text-light: #FFFFFF;
+            --text-muted: #78909C;
+            --border-color: #E0E7EF;  /* Softer border color */
+            --border-radius-sm: 10px; /* More rounded */
+            --border-radius-md: 18px;
+            --border-radius-lg: 28px;
+            --shadow-sm: 0 4px 8px rgba(0,0,0,0.05); /* Softer shadow */
+            --shadow-md: 0 6px 16px rgba(0,0,0,0.07);
+            --font-family-sans-serif: 'Open Sans', sans-serif;
+            --line-height-base: 1.65; /* Base line height for readability */
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: var(--font-family-sans-serif);
+            background-color: #E9EFF3; /* Background luar yang lebih cerah */
+            display: flex; justify-content: center; align-items: flex-start;
+            min-height: 100vh; padding: 20px;
+            line-height: var(--line-height-base);
+            color: var(--text-dark);
+        }
+
+        .mobile-screen {
+            width: 390px; max-height: 844px; min-height: 720px; /* Adjusted min-height */
+            background-color: var(--light-bg);
+            border-radius: var(--border-radius-lg);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1); /* Slightly stronger outer shadow */
+            display: flex; flex-direction: column; overflow: hidden;
+        }
+
+        .app-header-container {
+            background: linear-gradient(130deg, var(--primary-green), var(--accent-green) 90%);
+            color: var(--text-light);
+            padding: 18px 20px; /* Adjusted padding */
+            display: flex; align-items: center; min-height: 70px;
+            position: relative;
+            border-bottom-left-radius: 35px; border-bottom-right-radius: 35px;
+            flex-shrink: 0;
+            box-shadow: 0 5px 15px rgba(46, 125, 50, 0.2); /* Greenish shadow */
+        }
+        .app-header-container .back-button {
+            background: rgba(255,255,255,0.1); border: none; color: var(--text-light);
+            font-size: 1.3rem; cursor: pointer; position: absolute; left: 18px; top: 50%;
+            transform: translateY(-50%); width: 38px; height: 38px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            transition: background-color 0.2s ease;
+        }
+        .app-header-container .back-button:hover { background: rgba(255,255,255,0.2); }
+        .app-header-container .header-title {
+            flex-grow: 1; text-align: center; font-size: 1.2rem; font-weight: 700;
+        }
+        .app-header-container .header-title.with-back-button { margin-left: 30px; } /* Keep this for balance */
+
+        .app-main-content { flex-grow: 1; overflow-y: auto; padding: 22px; }
+        .app-main-content::-webkit-scrollbar { width: 5px; }
+        .app-main-content::-webkit-scrollbar-thumb { background-color: var(--accent-green); border-radius: 10px; }
+
+        /* Profile specific styles */
+        .profile-info { text-align: center; margin-bottom: 30px; }
+        .profile-info img { width: 95px; height: 95px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; border: 4px solid var(--card-bg); box-shadow: 0 0 0 3px var(--accent-green), var(--shadow-md); }
+        .profile-info h2 { font-size: 1.6rem; font-weight: 700; color: var(--text-dark); margin-bottom: 5px; }
+        .profile-info p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 18px;}
+        .profile-info .edit-profile-button {
+            background: linear-gradient(130deg, var(--accent-green), var(--primary-green));
+            color: var(--text-light); border: none; padding: 12px 25px; border-radius: var(--border-radius-md);
+            font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: transform 0.2s ease, box-shadow 0.2s ease;
+            display: inline-flex; align-items: center; box-shadow: var(--shadow-sm);
+        }
+        .profile-info .edit-profile-button:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+        .profile-info .edit-profile-button i { margin-right: 10px; }
+
+        .content-card { background-color: var(--card-bg); border-radius: var(--border-radius-md); margin-bottom: 22px; box-shadow: var(--shadow-md); overflow: hidden; }
+        .card-title-header { font-size: 0.9rem; font-weight: 700; color: var(--text-dark); margin-bottom: 12px; padding-left: 8px; text-transform: uppercase; letter-spacing: 0.8px;}
+
+        .list-item { display: flex; align-items: center; padding: 18px 20px; cursor: pointer; transition: background-color 0.2s ease, transform 0.1s ease; border-bottom: 1px solid var(--border-color); color: var(--text-dark); }
+        .list-item:last-child { border-bottom: none; }
+        .list-item:hover { background-color: #E8F5E9; transform: translateX(3px); } /* Light green hover, slight move */
+        .list-item .item-icon { font-size: 1.25rem; color: var(--accent-green); margin-right: 20px; width: 25px; text-align: center; }
+        .list-item .item-text { flex-grow: 1; font-size: 1rem; font-weight: 600; }
+        .list-item .item-arrow { font-size: 1rem; color: var(--text-muted); }
+        .list-item.danger { color: #D32F2F; } /* Slightly adjusted danger color */
+        .list-item.danger .item-icon { color: #D32F2F; }
+        
+        .app-button { display: flex; align-items: center; justify-content: center; width: 100%; padding: 15px; margin-top: 12px; background: linear-gradient(130deg, var(--accent-green), var(--primary-green)); color: var(--text-light); border: none; border-radius: var(--border-radius-md); text-align: center; font-size: 1rem; font-weight: 700; cursor: pointer; transition: transform 0.2s ease, box-shadow 0.2s ease; box-shadow: var(--shadow-sm); }
+        .app-button i { margin-right: 10px; font-size: 1.1em; }
+        .app-button:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+        .app-button.secondary { background: var(--text-muted); }
+        .app-button.secondary:hover { background-color: #607D8B; }
+
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; font-size: 0.9rem; font-weight: 600; color: var(--text-dark); margin-bottom: 8px; }
+        .form-group select, .form-group textarea { width: 100%; padding: 14px 16px; border: 1px solid var(--border-color); border-radius: var(--border-radius-sm); font-size: 1rem; font-family: var(--font-family-sans-serif); background-color: var(--card-bg); transition: border-color 0.2s ease, box-shadow 0.2s ease; }
+        .form-group textarea { min-height: 130px; resize: vertical; }
+        .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--accent-green); box-shadow: 0 0 0 3px rgba(102, 187, 106, 0.2); }
+
+        /* --- Styles for "Kekinian" Pages --- */
+        .page-hero {
+            text-align: center; padding: 30px 20px; /* More padding */
+            background: linear-gradient(130deg, var(--bright-accent), var(--accent-green) 90%);
+            color: var(--text-light); border-radius: var(--border-radius-md); margin-bottom: 30px;
+            box-shadow: var(--shadow-md);
+        }
+        .page-hero i { font-size: 3.5rem; margin-bottom: 18px; display: block; opacity: 0.85; text-shadow: 0 2px 4px rgba(0,0,0,0.15); }
+        .page-hero h2 { font-size: 1.7rem; font-weight: 800; margin-bottom: 10px; }
+        .page-hero p { font-size: 1rem; opacity: 0.95; line-height: 1.6; }
+
+        .content-section-young { margin-bottom: 30px; }
+        .content-section-young h3 {
+            font-size: 1.3rem; font-weight: 700; color: var(--primary-green);
+            margin-bottom: 15px; padding-bottom: 8px; border-bottom: 3px solid var(--bright-accent);
+            display: inline-block;
+        }
+        .content-section-young p, .content-section-young ul {
+            font-size: 1rem; line-height: var(--line-height-base); color: var(--text-muted); margin-bottom: 18px;
+        }
+        .content-section-young ul { list-style: none; padding-left: 0; }
+        .content-section-young li {
+            background-color: var(--card-bg); padding: 15px 18px; border-radius: var(--border-radius-sm);
+            margin-bottom: 12px; box-shadow: var(--shadow-sm); display: flex; align-items: center;
+            border-left: 4px solid var(--bright-accent); /* Accent border */
+        }
+        .content-section-young li i { color: var(--accent-green); font-size: 1.2rem; margin-right: 15px; width: 20px; text-align: center;}
+
+        .faq-item {
+            background-color: var(--card-bg); border-radius: var(--border-radius-sm);
+            margin-bottom: 12px; box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-color); /* Subtle border */
+        }
+        .faq-question {
+            padding: 16px 18px; cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+            font-weight: 700; color: var(--text-dark); font-size: 1.05rem;
+            transition: background-color 0.2s ease;
+        }
+         .faq-item:hover .faq-question { background-color: #F1F8E9; }
+        .faq-question i.toggle-icon { transition: transform 0.3s ease; color: var(--accent-green); }
+        .faq-answer {
+            padding: 0 18px; max-height: 0; overflow: hidden;
+            font-size: 0.95rem; color: var(--text-muted); line-height: 1.7;
+            transition: max-height 0.35s ease-in-out, padding 0.35s ease-in-out;
+            border-top: 1px solid transparent; /* Placeholder for transition */
+        }
+        .faq-item.active .faq-question i.toggle-icon { transform: rotate(180deg); }
+        .faq-item.active .faq-answer { padding: 15px 18px; max-height: 350px; border-top-color: var(--border-color); }
+
+        .about-page-young { text-align: center; padding-top: 10px;}
+        .about-page-young .app-logo-large {
+            width: 110px; height: 110px; border-radius: 22px; /* Squircle */
+            background: linear-gradient(130deg, var(--primary-green), var(--accent-green));
+            color: var(--text-light); display: flex; align-items: center; justify-content: center;
+            font-size: 3rem; font-weight: 800; margin: 0 auto 20px;
+            box-shadow: 0 8px 20px rgba(46, 125, 50, 0.25);
+        }
+        .about-page-young .app-logo-large i { filter: drop-shadow(0 3px 5px rgba(0,0,0,0.2)); }
+        .about-page-young h2 { font-size: 2rem; font-weight: 800; color: var(--primary-green); margin-bottom: 10px; }
+        .about-page-young .app-version-young { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 18px; font-weight: 600;}
+        .about-page-young .app-tagline { font-size: 1.05rem; color: var(--accent-green); margin-bottom: 30px; font-style: italic; font-weight: 600;}
+        .about-page-young .social-links i { font-size: 2rem; color: var(--accent-green); margin: 0 12px; transition: color 0.2s ease, transform 0.2s ease;}
+        .about-page-young .social-links i:hover { color: var(--primary-green); transform: scale(1.15); }
+        .about-page-young .copyright { font-size: 0.85rem; color: var(--text-muted); margin-top: 35px; }
+
+        .app-footer-container { display: flex; justify-content: space-around; background-color: var(--card-bg); padding: 10px 0; border-top: 1px solid var(--border-color); box-shadow: 0 -4px 12px rgba(0,0,0,0.06); flex-shrink: 0; }
+        .footer-item { flex: 1; text-align: center; cursor: pointer; padding: 8px 0; color: var(--text-muted); transition: color 0.2s ease, transform 0.2s ease; }
+        .footer-item .icon { font-size: 1.5rem; display: block; margin-bottom: 5px; }
+        .footer-item .text { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3px; }
+        .footer-item.active { color: var(--primary-green); }
+        .footer-item.active .icon { animation: pulseIcon 0.6s ease-in-out; }
+        .footer-item:hover:not(.active) { color: var(--accent-green); }
+
+        @keyframes pulseIcon { 0% {transform: scale(1);} 50% {transform: scale(1.2);} 100% {transform: scale(1);} }
+
+    </style>
+</head>
+<body>
+    <div class="mobile-screen">
+        <div class="app-header-container"></div>
+        <div class="app-main-content"></div>
+        <div class="app-footer-container"></div>
+    </div>
+
+    <script>
+        // JavaScript (sama seperti sebelumnya, tidak perlu diubah untuk styling ini)
+        const appHeaderContainer = document.querySelector('.app-header-container');
+        const appMainContent = document.querySelector('.app-main-content');
+        const appFooterContainer = document.querySelector('.app-footer-container');
+
+        const footerNavDefinition = [
+            { id: 'home', iconClass: 'fa-solid fa-house-chimney-window', text: 'Beranda' },
+            { id: 'status', iconClass: 'fa-solid fa-list-check', text: 'Status' },
+            { id: 'edukasi', iconClass: 'fa-solid fa-graduation-cap', text: 'Edukasi' },
+            { id: 'profile', iconClass: 'fa-solid fa-user-astronaut', text: 'Profil' }
+        ];
+
+        function renderAppHeader(title, showBackButton = false, backTargetPage = 'profile') {
+            let backButtonHTML = '';
+            let titleClass = 'header-title';
+            if (showBackButton) {
+                backButtonHTML = `<button class="back-button" onclick="loadPage('${backTargetPage}')"><i class="fas fa-arrow-left"></i></button>`;
+                titleClass += ' with-back-button'; 
+            }
+            appHeaderContainer.innerHTML = `
+                ${backButtonHTML}
+                <span class="${titleClass}">${title}</span>
+            `;
+        }
+
+        function renderAppFooter(activePageId) {
+            appFooterContainer.innerHTML = footerNavDefinition.map(item => `
+                <div class="footer-item ${item.id === activePageId ? 'active' : ''}" onclick="loadPage('${item.id}')">
+                    <i class="icon ${item.iconClass}"></i>
+                    <span class="text">${item.text}</span>
+                </div>
+            `).join('');
+        }
+
+        function initFaqAccordion() {
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                question.addEventListener('click', () => {
+                    const isActive = item.classList.contains('active');
+                    // Option 1: Close others
+                    // faqItems.forEach(i => { if (i !== item) i.classList.remove('active'); });
+                    // item.classList.toggle('active');
+
+                    // Option 2: Only one open at a time
+                    faqItems.forEach(i => i.classList.remove('active'));
+                    if (!isActive) {
+                        item.classList.add('active');
+                    }
+                });
+            });
+        }
+
+        function loadPage(pageName) {
+            appMainContent.scrollTop = 0; 
+            let headerTitle = '';
+            let mainContentHTML = '';
+            let activeFooterId = pageName;
+            let showBackButton = false;
+            let backTargetPage = 'profile'; 
+
+            const profileSubPages = ['panduanPengguna', 'keamananAkun', 'pusatBantuan', 'beriMasukan', 'tentangAplikasi'];
+            if (profileSubPages.includes(pageName)) {
+                activeFooterId = 'profile'; 
+                showBackButton = true;
+            }
+
+            const validPages = ['home', 'status', 'edukasi', 'profile', ...profileSubPages];
+            if (!validPages.includes(pageName)) {
+                pageName = 'profile'; activeFooterId = 'profile';
+            }
+
+            // --- KONTEN HALAMAN (SAMA SEPERTI SEBELUMNYA, HANYA NAMA APLIKASI DIGANTI) ---
+            // Untuk mempersingkat, saya akan gunakan placeholder.
+            // Pastikan Anda mengganti "Nama Aplikasi Anda" menjadi "CleanCycle" di semua konten HTML di bawah ini
+            // dan sesuaikan judul halaman.
+
+            if (pageName === 'profile') {
+                headerTitle = 'Profil Saya';
+                mainContentHTML = `
+                    <div class="profile-info">
+                        <img src="https://avatar.iran.liara.run/public/boy?username=GhandiClean" alt="Foto Profil Ghandi">
+                        <h2>Ghandi</h2>
+                        <p>muhamadghandinur.biz@gmail.com<br>Taman Puspa Anggaswangi G2-18</p>
+                        <button class="edit-profile-button" onclick="alert('Edit Profil diklik')">
+                            <i class="fas fa-user-edit"></i> Edit Profil
+                        </button>
+                    </div>
+                    <div class="card-title-header">PENGATURAN AKUN</div>
+                    <div class="content-card">
+                        <div class="list-item" onclick="alert('Notifikasi diklik')"> <i class="item-icon fas fa-bell"></i> <span class="item-text">Notifikasi</span> <i class="item-arrow fas fa-chevron-right"></i> </div>
+                        <div class="list-item" onclick="loadPage('panduanPengguna')"> <i class="item-icon fas fa-book-open-cover"></i> <span class="item-text">Panduan CleanCycle</span> <i class="item-arrow fas fa-chevron-right"></i> </div>
+                        <div class="list-item" onclick="loadPage('keamananAkun')"> <i class="item-icon fas fa-shield-halved"></i> <span class="item-text">Akun & Keamanan</span> <i class="item-arrow fas fa-chevron-right"></i> </div>
+                    </div>
+                    <div class="card-title-header">INFO & BANTUAN</div>
+                    <div class="content-card">
+                        <div class="list-item" onclick="loadPage('pusatBantuan')"> <i class="item-icon fas fa-circle-question"></i> <span class="item-text">Tanya Jawab (FAQ)</span> <i class="item-arrow fas fa-chevron-right"></i> </div>
+                        <div class="list-item" onclick="loadPage('beriMasukan')"> <i class="item-icon fas fa-comment-medical"></i> <span class="item-text">Kirim Masukanmu</span> <i class="item-arrow fas fa-chevron-right"></i> </div>
+                        <div class="list-item" onclick="loadPage('tentangAplikasi')"> <i class="item-icon fas fa-atom-simple"></i> <span class="item-text">Tentang CleanCycle</span> <i class="item-arrow fas fa-chevron-right"></i> </div>
+                    </div>
+                    <button class="app-button" onclick="alert('Keluar Akun diklik')"> <i class="fas fa-right-from-bracket"></i> Keluar Akun </button>
+                `;
+            } else if (pageName === 'panduanPengguna') {
+                headerTitle = 'Panduan CleanCycle';
+                mainContentHTML = `
+                    <div class="page-hero">
+                        <i class="fas fa-paper-plane"></i>
+                        <h2>Mulai dengan CleanCycle!</h2>
+                        <p>Yuk, jadi pahlawan lingkungan dengan langkah mudah bareng CleanCycle!</p>
+                    </div>
+                    <div class="content-section-young">
+                        <h3>🚀 Langkah Awalmu</h3>
+                        <ul>
+                            <li><i class="fas fa-user-plus"></i>Buat Akun: Cepat & gampang, langsung siap beraksi!</li>
+                            <li><i class="fas fa-map-location-dot"></i>Atur Alamat: Biar tim kami gak nyasar jemputnya.</li>
+                            <li><i class="fas fa-calendar-days"></i>Pilih Jadwal: Sesuaikan dengan kesibukanmu.</li>
+                        </ul>
+                    </div>
+                    <div class="content-section-young">
+                        <h3>✨ Manfaat Keren</h3>
+                        <ul>
+                            <li><i class="fas fa-recycle"></i>Pilah Sampah, Dapat Poin: Makin rajin, makin untung!</li>
+                            <li><i class="fas fa-gift"></i>Tukar Poin Jadi Hadiah: Voucher, diskon, atau donasi.</li>
+                            <li><i class="fas fa-chart-pie"></i>Lacak Kontribusimu: Lihat dampak positifmu.</li>
+                        </ul>
+                    </div>
+                     <div class="content-section-young">
+                        <h3>💡 Tips Juara!</h3>
+                        <p>Nyalain notif biar gak kelewat info jemputan, promo, dan update seru lainnya dari CleanCycle!</p>
+                    </div>
+                `;
+            } else if (pageName === 'keamananAkun') {
+                headerTitle = 'Jaga Akunmu Tetap Aman';
+                mainContentHTML = `
+                    <div class="page-hero">
+                        <i class="fas fa-user-shield"></i>
+                        <h2>Akun Aman, Daur Ulang Nyaman!</h2>
+                        <p>Privasimu penting banget buat kami. Ini cara biar akun CleanCycle-mu makin terlindungi.</p>
+                    </div>
+                    <div class="content-card" style="margin-top:0;">
+                        <div class="list-item" onclick="alert('Ubah Password diklik')"> <i class="item-icon fas fa-key"></i> <span class="item-text">Update Password Rutin</span> <i class="item-arrow fas fa-chevron-right"></i> </div>
+                        <div class="list-item" onclick="alert('Aktifkan 2FA diklik')"> <i class="item-icon fas fa-mobile-screen"></i> <span class="item-text">Nyalain Verifikasi Dua Faktor (2FA)</span> <i class="item-arrow fas fa-chevron-right"></i> </div>
+                        <div class="list-item" onclick="alert('Cek Aktivitas Login diklik')"> <i class="item-icon fas fa-magnifying-glass-chart"></i> <span class="item-text">Pantau Aktivitas Login</span> <i class="item-arrow fas fa-chevron-right"></i> </div>
+                        <div class="list-item" onclick="alert('Jangan Share OTP diklik')"> <i class="item-icon fas fa-comment-sms"></i> <span class="item-text">Kode OTP Rahasia, Jangan Disebar!</span> <i class="item-arrow fas fa-chevron-right"></i> </div>
+                        <div class="list-item danger" onclick="alert('Hapus Akun diklik')"> <i class="item-icon fas fa-user-slash"></i> <span class="item-text">Hapus Akun (Yakin nih?)</span> <i class="item-arrow fas fa-chevron-right"></i> </div>
+                    </div>
+                `;
+            } else if (pageName === 'pusatBantuan') {
+                headerTitle = 'Tanya CleanCycle (FAQ)';
+                mainContentHTML = `
+                    <div class="page-hero">
+                        <i class="fas fa-headset"></i>
+                        <h2>Butuh Bantuan?</h2>
+                        <p>Temukan jawaban dari pertanyaan-pertanyaan yang sering muncul di sini.</p>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">Gimana cara daftar CleanCycle? <i class="fas fa-chevron-down toggle-icon"></i></div>
+                        <div class="faq-answer">Gampang banget! Download aplikasi CleanCycle, klik 'Daftar', isi data dirimu, verifikasi, dan langsung bisa mulai daur ulang!</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">Jenis sampah apa aja yang bisa di-CleanCycle? <i class="fas fa-chevron-down toggle-icon"></i></div>
+                        <div class="faq-answer">CleanCycle menerima sampah anorganik terpilah seperti botol plastik, kertas, kardus, kaleng aluminium, dan kemasan kaca. Pastikan bersih dan kering ya! Info lengkap ada di menu 'Panduan Sampah'.</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">Kapan jadwal penjemputan sampahnya? <i class="fas fa-chevron-down toggle-icon"></i></div>
+                        <div class="faq-answer">Kamu bisa pilih jadwal penjemputan yang paling cocok buatmu di aplikasi. Ada opsi penjemputan reguler atau berdasarkan permintaan.</div>
+                    </div>
+                     <div class="faq-item">
+                        <div class="faq-question">Poin yang dikumpulin bisa buat apa? <i class="fas fa-chevron-down toggle-icon"></i></div>
+                        <div class="faq-answer">Poin CleanCycle bisa kamu tukar dengan berbagai hadiah menarik! Mulai dari saldo e-wallet, voucher belanja, produk ramah lingkungan, sampai donasi untuk kegiatan sosial. Seru, kan?</div>
+                    </div>
+                    <p style="text-align:center; margin-top:25px; color: var(--text-muted); font-size:0.95rem;">Masih bingung? <a href="#" onclick="loadPage('beriMasukan'); return false;" style="color:var(--accent-green); font-weight:700; text-decoration:none;">Chat kami aja!</a></p>
+                `;
+            } else if (pageName === 'beriMasukan') {
+                headerTitle = 'Suara Kamu untuk CleanCycle';
+                mainContentHTML = `
+                    <div class="page-hero">
+                        <i class="fas fa-lightbulb-exclamation-on"></i>
+                        <h2>Punya Ide atau Keluhan?</h2>
+                        <p>CleanCycle pengen jadi lebih baik lagi! Masukan, saran, atau kritikmu berarti banget buat kami.</p>
+                    </div>
+                    <form onsubmit="alert('Sip, masukanmu udah kami terima! Makasih ya udah bantu CleanCycle jadi lebih baik!'); loadPage('profile'); return false;">
+                        <div class="form-group">
+                            <label for="feedbackType">Topik Masukanmu:</label>
+                            <select id="feedbackType" name="feedbackType">
+                                <option value="ide">Ide Cemerlang buat CleanCycle ✨</option>
+                                <option value="bug">Laporin Masalah Teknis (Bug) 🐞</option>
+                                <option value="pujian">CleanCycle Keren Banget! 👍</option>
+                                <option value="kritik">Saran Biar Makin Oke 👌</option>
+                                <option value="lainnya">Lain-lain...</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="feedbackText">Detailnya gimana nih?</label>
+                            <textarea id="feedbackText" name="feedbackText" placeholder="Tulis semua di sini ya, jangan ragu-ragu..." required rows="6"></textarea>
+                        </div>
+                        <button type="submit" class="app-button"><i class="fas fa-paper-plane"></i> Kirim Masukan</button>
+                        <button type="button" class="app-button secondary" style="margin-top:12px;" onclick="loadPage('profile')"><i class="fas fa-xmark-circle"></i> Batal Aja</button>
+                    </form>
+                `;
+            } else if (pageName === 'tentangAplikasi') {
+                headerTitle = 'Tentang CleanCycle';
+                mainContentHTML = `
+                    <div class="about-page-young">
+                        <div class="app-logo-large"><i class="fas fa-recycle"></i></div>
+                        <h2>CleanCycle</h2>
+                        <p class="app-version-young">Versi Paling Update 1.0.1</p>
+                        <p class="app-tagline">"Daur Ulang Asyik, Bumi Cantik!"</p>
+                        
+                        <div class="content-section-young" style="text-align:left; margin-top:20px;">
+                            <h3>♻️ Misi Mulia CleanCycle:</h3>
+                            <p>CleanCycle lahir dari mimpi buat ngajak kamu semua peduli lingkungan dengan cara yang seru dan gampang. Setiap sampah yang kamu pilah bareng CleanCycle itu langkah nyata buat bumi yang lebih sehat!</p>
+                            
+                            <h3>🤙 Kenalan Lebih Dekat:</h3>
+                            <div class="social-links" style="margin-bottom:25px; margin-top:15px;">
+                                <a href="#" onclick="alert('Instagram CleanCycle!')" title="Instagram CleanCycle"><i class="fab fa-instagram"></i></a>
+                                <a href="#" onclick="alert('TikTok CleanCycle!')" title="TikTok CleanCycle"><i class="fab fa-tiktok"></i></a>
+                                <a href="#" onclick="alert('X (Twitter) CleanCycle!')" title="X CleanCycle"><i class="fab fa-twitter"></i></a>
+                                <a href="#" onclick="alert('Website CleanCycle!')" title="Website CleanCycle"><i class="fas fa-globe"></i></a>
+                            </div>
+                        </div>
+                        <p class="copyright">© ${new Date().getFullYear()} CleanCycle. Dibuat dengan ❤️ untuk Indonesia.</p>
+                    </div>
+                `;
+            }
+            // Placeholder untuk halaman utama
+            else if (pageName === 'home') {
+                headerTitle = 'Beranda CleanCycle';
+                mainContentHTML = `<div class="page-hero"><i class="fas fa-leaf"></i><h2>Halo, Ghandi!</h2><p>Selamat datang di CleanCycle! Siap jadi agen perubahan untuk lingkungan hari ini?</p></div> <p style="text-align:center; color:var(--text-muted); font-size:1rem; padding:20px;">Aktivitas terbaru dan info menarik akan tampil di sini!</p>`;
+            } else if (pageName === 'status') {
+                headerTitle = 'Status & Riwayat';
+                mainContentHTML = `<div class="page-hero"><i class="fas fa-history"></i><h2>Jejak Langkah Hijaumu</h2><p>Semua riwayat penjemputan, poin, dan kontribusimu tercatat lengkap di sini.</p></div> <p style="text-align:center; color:var(--text-muted); font-size:1rem; padding:20px;">Detail status penjemputan dan riwayat poin akan muncul di sini.</p>`;
+            } else if (pageName === 'edukasi') {
+                headerTitle = 'Edukasi Lingkungan';
+                mainContentHTML = `<div class="page-hero"><i class="fas fa-brain"></i><h2>Jadi Makin Cerdas Lingkungan!</h2><p>Temukan artikel, tips, dan info seru seputar daur ulang dan gaya hidup minim sampah.</p></div> <p style="text-align:center; color:var(--text-muted); font-size:1rem; padding:20px;">Konten edukasi menarik seputar lingkungan akan ada di sini!</p>`;
+            }
+
+
+            renderAppHeader(headerTitle, showBackButton, backTargetPage);
+            appMainContent.innerHTML = mainContentHTML;
+            renderAppFooter(activeFooterId);
+
+            if (pageName === 'pusatBantuan') { 
+                initFaqAccordion();
+            }
+        }
+
+        loadPage('profile'); // Muat halaman profil sebagai default
+    </script>
+
+</body>
+</html>

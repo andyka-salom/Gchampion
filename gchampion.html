@@ -3,186 +3,1008 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GChampion: Genshin Impact Power Showcase - GC Gaming Store</title>
+    <title>GChampion - Showcase & Turnamen - GC Gaming Store</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="index.css">
+    <!-- Font Awesome untuk ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        /* ============== CONSOLIDATED & MODERNIZED ROOT VARIABLES ============== */
+        :root {
+            /* Modern Base Palette & Theming */
+            --bg-primary: #0F121A;
+            --bg-secondary: #1A1E2C;
+            --bg-tertiary: #2A2F45;
+            --bg-glass: rgba(26, 30, 44, 0.75); /* Sedikit lebih opaque untuk readability */
+            --blur-effect: blur(10px);
+
+            --accent-primary: #00A9FF;
+            --accent-primary-rgb: 0, 169, 255;
+            --accent-secondary: #FF4081;
+            --accent-secondary-rgb: 255, 64, 129;
+            --accent-gold: #FFD700;
+            --accent-gold-rgb: 255, 215, 0;
+
+            --text-primary: #EAEAEA;
+            --text-secondary: #A0A8C4;
+            --text-placeholder: #7882A0;
+
+            --border-color: rgba(160, 168, 196, 0.2);
+            --border-color-strong: rgba(160, 168, 196, 0.35);
+
+            --border-radius-sm: 8px;
+            --border-radius-md: 12px;
+            --border-radius-lg: 16px;
+
+            --shadow-soft: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --shadow-medium: 0 8px 25px rgba(0, 0, 0, 0.15);
+            --shadow-strong: 0 12px 35px rgba(0,0,0,0.2);
+            --shadow-inset: inset 0 1px 3px rgba(0,0,0,0.15);
+
+            --gradient-accent: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+            --gradient-gold: linear-gradient(135deg, var(--accent-gold) 0%, #FFB800 100%);
+            --gradient-bg: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 70%);
+
+            --bar-rank-1: var(--gradient-gold);
+            --bar-rank-2: linear-gradient(90deg, #C0C0C0, #A9A9A9);
+            --bar-rank-3: linear-gradient(90deg, #CD7F32, #A0522D);
+            --bar-rank-default: var(--accent-primary);
+        }
+
+        /* ============== GLOBAL RESETS & BASE STYLES ============== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            font-size: 16px;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+        }
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: var(--bg-secondary); }
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-primary);
+            border-radius: var(--border-radius-sm);
+            border: 2px solid var(--bg-secondary);
+        }
+        ::-webkit-scrollbar-thumb:hover { background: #0087cc; }
+
+        /* ============== LAYOUT ============== */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 0;
+        }
+
+        /* ============== HEADER & NAVIGATION ============== */
+        header {
+            background-color: rgba(26, 30, 44, 0.85);
+            backdrop-filter: var(--blur-effect);
+            -webkit-backdrop-filter: var(--blur-effect);
+            padding: 18px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .logo {
+            font-size: 1.8em; /* Disesuaikan dengan HTML Anda */
+            font-weight: 700;
+            color: var(--accent-primary);
+            text-decoration: none;
+        }
+        .logo span { color: var(--accent-secondary); }
+
+        .nav-links { /* Menggunakan .nav-links dari HTML Anda */
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s, transform 0.2s;
+            font-size: 1em;
+            position: relative;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--accent-primary);
+            transition: width 0.3s ease-out;
+        }
+        .nav-links a:hover::after,
+        .nav-links a.active::after { width: 100%; }
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--accent-primary);
+            transform: translateY(-1px);
+        }
+
+        /* ============== SECTION STYLES ============== */
+        .section { padding: 60px 0; }
+        .section-title-gchampion {
+            font-size: 2.8em;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 60px;
+            text-align: center;
+            position: relative;
+            padding-bottom: 20px;
+            letter-spacing: 0.5px;
+        }
+        .section-title-gchampion::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--gradient-gold);
+            border-radius: 3px;
+        }
+
+        /* ============== BUTTONS (General) ============== */
+        .button-modern {
+            padding: 14px 30px;
+            border: none;
+            border-radius: var(--border-radius-md);
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.05em;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-decoration: none;
+            text-align: center;
+            letter-spacing: 0.5px;
+        }
+        .button-modern.button-accent {
+            background: var(--gradient-accent); color: white;
+            box-shadow: 0 4px 15px rgba(var(--accent-primary-rgb), 0.15), 0 4px 15px rgba(var(--accent-secondary-rgb), 0.15);
+        }
+        .button-modern.button-accent:hover {
+            filter: brightness(1.1);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(var(--accent-primary-rgb), 0.25), 0 6px 20px rgba(var(--accent-secondary-rgb), 0.25);
+        }
+
+
+        /* ========================================================================== */
+        /* == MODERNIZED GCHAMPION PAGE STYLES == */
+        /* ========================================================================== */
+
+        /* GChampion Custom Hero Section */
+        .gchampion-custom-hero {
+            background: linear-gradient(rgba(15, 18, 26, 0.85), rgba(15, 18, 26, 0.9)), url('https://via.placeholder.com/1920x700.png?text=GChampion+Supreme+Arena') no-repeat center center/cover;
+            color: white;
+            padding: 90px 20px 100px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 5px solid transparent;
+            border-image: var(--gradient-gold) 1;
+            position: relative;
+            overflow: hidden;
+        }
+        .gchampion-custom-hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.4) 100%);
+            z-index: 1;
+        }
+        .gchampion-hero-content {
+            max-width: 850px;
+            position: relative;
+            z-index: 2;
+        }
+        .gchampion-logo-hero {
+            max-width: 280px;
+            height: auto;
+            margin-bottom: 25px;
+            filter: drop-shadow(0 0 15px rgba(var(--accent-gold-rgb), 0.6));
+        }
+        .gchampion-custom-hero h1 {
+            font-size: 4em;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--accent-gold);
+            text-shadow: 0 3px 10px rgba(0,0,0,0.4);
+            letter-spacing: 1px;
+        }
+        .gchampion-hero-invitation {
+            font-size: 1.35em;
+            color: var(--text-primary);
+            margin-bottom: 35px;
+            line-height: 1.8;
+            font-weight: 400;
+        }
+        .button-hero-gchampion { /* GChampion Specific Hero Button */
+            padding: 18px 40px;
+            font-size: 1.1em;
+            font-weight: 600;
+            background: var(--gradient-gold);
+            color: var(--bg-primary);
+            border: none;
+            border-radius: var(--border-radius-md);
+            box-shadow: 0 5px 20px rgba(var(--accent-gold-rgb), 0.3);
+            transition: all 0.3s ease;
+            text-decoration: none; /* Pastikan tidak ada underline dari <a> */
+            display: inline-block; /* Untuk padding bekerja dengan benar */
+        }
+        .button-hero-gchampion:hover {
+            filter: brightness(1.1);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(var(--accent-gold-rgb), 0.4);
+        }
+
+        /* Timeline Cards - GLASSMORPHISM STYLE */
+        .schedule-gchampion.gchampion-timeline-grid {
+             display: grid;
+             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+             gap: 30px;
+        }
+        .schedule-phase-card.timeline-item {
+            background: var(--bg-glass);
+            backdrop-filter: var(--blur-effect);
+            -webkit-backdrop-filter: var(--blur-effect);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: var(--border-radius-lg);
+            padding: 30px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.25);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center; /* Pastikan konten kartu timeline terpusat */
+            position: relative; /* Untuk .phase-status */
+            overflow: hidden; /* Untuk .phase-status */
+        }
+        .schedule-phase-card.timeline-item:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.35);
+        }
+        .schedule-phase-card.timeline-item .phase-icon i {
+            font-size: 3em;
+            margin-bottom: 20px;
+            display: inline-block; /* Agar gradien bekerja */
+            background: -webkit-linear-gradient(var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .schedule-phase-card.timeline-item.active {
+            border: 1px solid var(--accent-gold);
+            box-shadow: 0 0 25px rgba(var(--accent-gold-rgb), 0.2);
+        }
+        .schedule-phase-card.timeline-item.active .phase-icon i {
+            background: -webkit-linear-gradient(var(--accent-gold), #FFB800);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .schedule-phase-card.timeline-item h4 {
+            font-size: 1.4em;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        .schedule-phase-card.timeline-item p {
+            font-size: 0.95em;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+        .schedule-phase-card.timeline-item .date-range {
+            font-size: 0.9em;
+            color: var(--accent-gold);
+            font-weight: 500;
+            margin-top: 15px;
+            display: block;
+        }
+        .phase-status {
+            position: absolute;
+            top: 18px;
+            right: 18px;
+            background: var(--accent-gold);
+            color: var(--bg-primary);
+            padding: 6px 12px;
+            border-radius: var(--border-radius-sm);
+            font-size: 0.8em;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        /* Karakter & Meta Cards */
+        .karakter-meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            align-items: stretch; /* Kunci untuk tinggi sama */
+        }
+        .karakter-card {
+            background-color: var(--bg-secondary);
+            border-radius: var(--border-radius-lg);
+            padding: 25px;
+            text-align: center;
+            box-shadow: var(--shadow-medium);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between; /* Distribusi ruang */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+        .karakter-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-strong);
+        }
+        .karakter-image {
+            width: 100%;
+            max-width: 280px;
+            height: 300px; /* Tinggi gambar konsisten */
+            object-fit: contain; /* Sesuaikan: contain, cover, scale-down */
+            border-radius: var(--border-radius-md);
+            margin-bottom: 20px;
+        }
+        .karakter-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            flex-grow: 1; /* Agar blok info mengisi ruang */
+        }
+        .karakter-info h3 {
+            font-size: 1.7em;
+            background: var(--gradient-accent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        .karakter-info .karakter-name {
+            font-size: 1.1em;
+            color: var(--text-primary);
+            margin-bottom: 15px;
+            line-height: 1.5;
+            flex-grow: 1; /* Agar paragraf mengisi ruang */
+            display: flex; /* Untuk align items center jika teks pendek */
+            align-items: center;
+        }
+        .karakter-button { /* Tombol di dalam card karakter */
+            width: 90%;
+            max-width: 260px;
+            margin-top: auto; /* Dorong ke bawah */
+            padding: 14px 20px;
+            font-size: 0.95em;
+            /* background-color: var(--accent-primary); // Sudah di .button-modern.button-accent */
+            border: none;
+        }
+        .karakter-button i { margin-right: 10px; }
+
+
+        /* Leaderboard Section */
+        .gchampion-leaderboard-section {
+            background-color: var(--bg-secondary);
+            padding: 50px;
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-strong);
+        }
+        .leaderboard-game-title {
+            font-size: 2em;
+            background: var(--gradient-gold);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 30px;
+            text-align: center;
+            border-bottom: 2px solid var(--accent-gold);
+            padding-bottom: 15px;
+            font-weight: 600;
+        }
+        .leaderboard-hsr, .leaderboard-mlbb { margin-bottom: 40px; }
+        .leaderboard-hsr:last-child, .leaderboard-mlbb:last-child { margin-bottom: 0; }
+        .leaderboard-tables-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .leaderboard-table-wrapper h4 {
+            font-size: 1.4em;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: 500;
+        }
+        .leaderboard-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 8px;
+            background-color: transparent;
+            box-shadow: none;
+        }
+        .leaderboard-table th, .leaderboard-table td {
+            padding: 15px 18px;
+            text-align: left;
+            border-bottom: none;
+        }
+        .leaderboard-table thead tr { background-color: var(--bg-tertiary); }
+        .leaderboard-table th {
+            color: var(--accent-primary);
+            font-weight: 600;
+            font-size: 1.1em;
+        }
+        .leaderboard-table th:first-child { border-radius: var(--border-radius-sm) 0 0 var(--border-radius-sm); }
+        .leaderboard-table th:last-child { border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0; }
+        .leaderboard-table tbody tr {
+            background-color: var(--bg-primary);
+            border-radius: var(--border-radius-sm);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+        .leaderboard-table tbody tr:hover {
+            background-color: var(--bg-tertiary);
+            transform: scale(1.02);
+        }
+        .leaderboard-table td:first-child { border-radius: var(--border-radius-sm) 0 0 var(--border-radius-sm); color: var(--text-primary); font-weight: 500;}
+        .leaderboard-table td:last-child { border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0; }
+        .leaderboard-table td { color: var(--text-secondary); }
+
+        .leaderboard-mlbb h4 { /* Judul Update Squad */
+            font-size: 1.5em;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+        .squad-list { list-style: none; padding-left: 0; }
+        .squad-list li {
+            background-color: var(--bg-primary);
+            padding: 12px 18px;
+            margin-bottom: 10px;
+            border-radius: var(--border-radius-sm);
+            color: var(--text-secondary);
+            font-size: 1.05em;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+            transition: transform 0.2s ease, background-color 0.2s ease;
+            display: flex; /* Untuk ikon */
+            align-items: center;
+        }
+        .squad-list li:hover {
+            background-color: var(--bg-tertiary);
+            transform: translateX(5px);
+        }
+        .squad-list li i { color: var(--accent-secondary); margin-right: 12px; }
+        .leaderboard-update-info { /* Untuk info jadwal */
+             text-align: left; margin-top:10px; font-style: italic; color: var(--text-secondary); font-size: 0.9em;
+        }
+
+        /* Cara Mendapatkan Tiket */
+        .registration-info.get-ticket-section { /* Target spesifik untuk section tiket */
+            background-color: transparent; /* Hapus background default .registration-info */
+            padding: 0; /* Hapus padding default .registration-info */
+            box-shadow: none; /* Hapus shadow default .registration-info */
+            text-align: left; /* Override text-align center */
+        }
+        .get-ticket-section .section-title-gchampion { font-size: 2.5em !important; margin-bottom: 40px !important; }
+        .ticket-info-flex {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .ticket-method {
+            background-color: var(--bg-secondary);
+            padding: 30px;
+            border-radius: var(--border-radius-lg);
+            text-align: center;
+            flex: 1;
+            min-width: 300px;
+            box-shadow: var(--shadow-medium);
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+        .ticket-method:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-strong);
+            border-color: var(--accent-primary);
+        }
+        .ticket-icon {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            display: inline-block;
+            background: var(--gradient-gold);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .ticket-method h4 {
+            font-size: 1.5em;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        .ticket-method p { font-size: 1em; color: var(--text-secondary); }
+        .ticket-method p strong { color: var(--accent-gold); }
+        .social-media-links-tiket { margin-top: 20px; }
+        .social-media-links-tiket a {
+            color: var(--text-secondary);
+            font-size: 2em;
+            margin: 0 10px;
+            transition: color 0.3s, transform 0.2s;
+        }
+        .social-media-links-tiket a:hover {
+            color: var(--accent-primary);
+            transform: scale(1.1);
+        }
+
+        /* Kontak & Topup Buttons */
+        #kontak-topup { /* Beri padding pada section pembungkusnya */
+            padding-top: 40px;
+            padding-bottom: 40px;
+        }
+        .contact-topup-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+        .contact-topup-buttons .button-modern { /* Pastikan ini adalah button-modern */
+            padding: 16px 35px;
+            font-size: 1.15em;
+            font-weight: 600;
+            border-radius: var(--border-radius-md);
+            box-shadow: var(--shadow-soft);
+            transition: all 0.3s ease;
+            border: none;
+            display: inline-flex; /* Untuk align ikon */
+            align-items: center;
+            justify-content: center;
+        }
+        .contact-topup-buttons .button-modern:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: var(--shadow-medium);
+        }
+        .button-whatsapp {
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: white;
+        }
+        .button-whatsapp:hover { background: linear-gradient(135deg, #1DAE50, #0F7A6E); }
+        .button-accent-alt {
+            background: var(--gradient-accent);
+            color: white;
+        }
+        .button-accent-alt:hover { filter: brightness(1.1); }
+        .contact-topup-buttons .button-modern i { margin-right: 12px; }
+
+
+        /* FAQ Section */
+        .faq-container-gchampion {
+            max-width: 850px; /* Sedikit lebih lebar */
+            margin: 0 auto;
+        }
+        .faq-item-gchampion {
+            background-color: var(--bg-secondary);
+            margin-bottom: 18px;
+            border-radius: var(--border-radius-md);
+            border: 1px solid var(--border-color);
+            transition: box-shadow 0.3s ease;
+            overflow: hidden; /* Penting untuk animasi jika ada */
+        }
+        .faq-item-gchampion:hover {
+            box-shadow: 0 0 15px rgba(var(--accent-primary-rgb), 0.15);
+        }
+        .faq-item-gchampion summary {
+            padding: 20px 28px;
+            font-weight: 500;
+            font-size: 1.2em;
+            color: var(--text-primary);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.2s, color 0.2s;
+        }
+        .faq-item-gchampion summary:hover { background-color: var(--bg-tertiary); }
+        .faq-item-gchampion summary::after {
+            content: '\f078'; /* Chevron down Font Awesome */
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            font-size: 0.9em;
+            color: var(--accent-gold); /* Sesuai dengan style modern */
+            transition: transform 0.3s ease;
+        }
+        .faq-item-gchampion[open] summary {
+            background-color: var(--bg-tertiary);
+            color: var(--accent-gold);
+        }
+        .faq-item-gchampion[open] summary::after { transform: rotate(180deg); }
+        .faq-content-gchampion {
+            padding: 25px 30px;
+            background-color: var(--bg-primary);
+            border-top: 1px solid var(--border-color-strong);
+        }
+        .faq-content-gchampion p {
+            font-size: 1em;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+        }
+        .faq-content-gchampion p:last-child { margin-bottom: 0; }
+
+
+        /* ============== FOOTER ============== */
+        footer {
+            background: var(--gradient-bg);
+            padding: 70px 0 40px 0;
+            margin-top: 80px;
+            color: var(--text-secondary);
+            border-top: 1px solid var(--border-color);
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 35px;
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .footer-column h4 {
+            color: var(--text-primary);
+            margin-bottom: 25px;
+            font-size: 1.35em;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        .footer-column .logo { /* Logo di footer */
+            font-size: 2em; margin-bottom: 20px;
+            color:var(--accent-primary);
+            font-weight: 700; text-decoration: none;
+        }
+        .footer-column .logo span { color: var(--accent-secondary); }
+        .footer-column p { font-size: 1em; line-height: 1.8; }
+        .footer-column ul { list-style: none; padding-left: 0; }
+        .footer-column ul li { margin-bottom: 12px; }
+        .footer-column ul li a {
+            font-size: 1em;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s, padding-left 0.3s;
+        }
+        .footer-column ul li a:hover {
+            color: var(--accent-primary);
+            padding-left: 5px;
+        }
+        .footer-social-icons {
+            display: flex; /* Untuk align ikon */
+            gap: 12px; /* Jarak antar ikon */
+            margin-top: 15px;
+        }
+        .footer-social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            color: var(--text-secondary);
+            font-size: 1.3em;
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-social-icons a:hover {
+            color: white;
+            background-color: var(--accent-primary);
+            border-color: var(--accent-primary);
+            transform: translateY(-3px) scale(1.1);
+        }
+        .footer-bottom {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.95em;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 992px) { /* Tablet */
+            .section-title-gchampion { font-size: 2.4em; margin-bottom: 40px;}
+            .gchampion-custom-hero h1 { font-size: 3.2em; }
+            .gchampion-hero-invitation { font-size: 1.2em; }
+            .karakter-meta-grid, .leaderboard-tables-container { grid-template-columns: 1fr; } /* Stack di tablet jika perlu */
+        }
+
+        @media (max-width: 768px) { /* Mobile */
+            body { font-size: 15px; }
+            .navbar { flex-wrap: wrap; justify-content: center; gap: 15px 20px; }
+            .logo { width: 100%; text-align: center; margin-bottom: 10px; font-size: 1.6em; }
+            .nav-links { width: 100%; justify-content: center; gap: 15px; order: 2; } /* Navigasi di bawah logo */
+            .nav-links a { font-size: 0.95em; }
+
+            .section-title-gchampion { font-size: 2em; margin-bottom: 30px; padding-bottom: 15px;}
+            .section-title-gchampion::after { width: 80px; height: 3px; }
+
+            .gchampion-custom-hero { padding: 60px 15px 70px; }
+            .gchampion-custom-hero h1 { font-size: 2.5em; }
+            .gchampion-hero-invitation { font-size: 1.1em; }
+            .button-hero-gchampion { padding: 15px 30px; font-size: 1em; }
+
+            .schedule-gchampion.gchampion-timeline-grid { grid-template-columns: 1fr; gap: 20px; }
+            .schedule-phase-card.timeline-item { padding: 20px; }
+            .schedule-phase-card.timeline-item .phase-icon i { font-size: 2.5em; }
+            .schedule-phase-card.timeline-item h4 { font-size: 1.2em; }
+
+            .karakter-meta-grid { gap: 20px; }
+            .karakter-card { padding: 20px; }
+            .karakter-image { max-width: 220px; height: 240px; margin-bottom: 15px; }
+            .karakter-info h3 { font-size: 1.4em; }
+            .karakter-info .karakter-name { font-size: 1em; }
+
+            .gchampion-leaderboard-section { padding: 30px 15px; }
+            .leaderboard-game-title { font-size: 1.6em; margin-bottom: 20px; padding-bottom: 10px;}
+            .leaderboard-table th, .leaderboard-table td { padding: 10px 12px; font-size: 0.9em;}
+            .squad-list li { padding: 10px 15px; font-size: 0.95em; }
+
+            .get-ticket-section .section-title-gchampion { font-size: 1.8em !important; margin-bottom: 30px !important; }
+            .ticket-method { padding: 20px; min-width: unset; }
+            .ticket-icon { font-size: 2.8em; }
+            .ticket-method h4 { font-size: 1.3em; }
+
+            .contact-topup-buttons { gap: 15px; }
+            .contact-topup-buttons .button-modern { padding: 14px 25px; font-size: 1em; }
+
+            .faq-container-gchampion { padding: 0 10px; }
+            .faq-item-gchampion summary { padding: 15px 20px; font-size: 1.05em; }
+            .faq-content-gchampion { padding: 18px 20px; }
+
+            .footer-grid { grid-template-columns: 1fr; text-align: center; }
+            .footer-column .logo, .footer-social-icons { justify-content: center; }
+            .footer-column ul { padding-left: 0; }
+        }
+
+    </style>
 </head>
 <body>
 
- <header>
+    <header>
         <div class="navbar">
             <div class="logo"><span>GC</span> GAMING</div>
             <nav class="nav-links">
                 <a href="index.html">Home</a> <!-- Ganti dengan link ke halaman utama Anda -->
                 <a href="#">Cari Pesanan</a>
                 <a href="#">Daftar Harga</a>
+                <a href="berita.html ">Berita</a>
                 <a href="gchampion.html" class="active">Gchampion</a>
-                <a href="reseller.html" class="active">Program Reseller</a>
+                <a href="reseller.html">Program Reseller</a> <!-- Hilangkan class active jika Gchampion yang aktif -->
             </nav>
         </div>
     </header>
 
     <main>
-        <div class="gchampion-hero">
-            <h1>GCHAMPION</h1>
-            <p class="hero-tagline">Genshin Impact Power Showcase</p>
-            <p class="subtitle">Buktikan kekuatan akun Genshin Impact-mu dan raih gelar Traveler Terkuat di GC Gaming Store! Pamerkan koleksi karakter, artefak, dan pencapaianmu.</p>
-            <div class="event-dates">🗓️ Periode Kompetisi: 1 - 30 September 2024</div>
-            <a href="#leaderboard" class="button-hero-gchampion">Lihat Leaderboard & Peringkat</a>
+        <!-- BAGIAN PALING ATAS: HERO SECTION GCHAMPION -->
+        <div class="gchampion-custom-hero">
+            <div class="gchampion-hero-content">
+                <img src="LOGO DENGAN TROPHY.png" alt="Logo GCHAMPION" class="gchampion-logo-hero">
+                <h1>GCHAMPION</h1>
+                <p class="gchampion-hero-invitation">
+                    Yang terkuat bisa jadi adalah karaktermu dan timmu, ayo berpartisipasi di ajang showcase HSR & turnamen MLBB GCHAMPION! Berhadiah ribuan Oneiric Shard dan Diamond!
+                </p>
+                <a href="#jadwal" class="button-hero-gchampion">Lihat Detail Kompetisi</a>
+            </div>
         </div>
 
         <div class="container">
-            <section class="section" id="tentang">
-                <h2 class="section-title-gchampion">Tentang GChampion: Genshin Showcase</h2>
-                <div class="about-gchampion-content">
-                    <p>GChampion: Genshin Showcase adalah ajang kompetisi unik bagi para Traveler untuk menunjukkan sejauh mana kekuatan dan dedikasi mereka dalam membangun akun Genshin Impact. Penilaian tidak hanya berdasarkan satu aspek, melainkan kombinasi dari berbagai metrik untuk menentukan Traveler paling impresif.</p>
-                    <p>Kategori penilaian utama meliputi (namun tidak terbatas pada):</p>
-                    <div class="categories-list">
-                        <span class="category-tag">🛡️ Total Combat Power Akun</span>
-                        <span class="category-tag">⚔️ Build Karakter Unggulan</span>
-                        <span class="category-tag">🌀 Penyelesaian Spiral Abyss</span>
-                        <span class="category-tag">✨ Koleksi Karakter & Senjata</span>
-                        <span class="category-tag">💥 Damage Tertinggi (Khusus)</span>
-                    </div>
-                    <p style="margin-top: 30px;">Setiap peserta akan dinilai berdasarkan data yang dikirimkan dan diverifikasi oleh tim juri GC Gaming. <span class="highlight-text">Jadilah yang terbaik dan menangkan hadiah eksklusif!</span></p>
-                </div>
-            </section>
-
+            <!-- BAGIAN KEDUA: TIMELINE SEASON -->
             <section class="section" id="jadwal">
-                <h2 class="section-title-gchampion">Linimasa Kompetisi</h2>
-                <div class="schedule-gchampion">
-                    <div class="schedule-phase-card">
-                        <div class="phase-icon">📝</div>
-                        <h4>Pendaftaran & Pengumpulan Data</h4>
-                        <span class="date-range">1 - 10 September 2024</span>
-                        <p>Peserta mendaftar dan mengirimkan data akun (screenshot, video, dll.) sesuai panduan.</p>
+                <h2 class="section-title-gchampion">Timeline Season GChampion</h2>
+                <div class="schedule-gchampion gchampion-timeline-grid">
+                    <div class="schedule-phase-card timeline-item">
+                        <div class="phase-icon"><i class="fas fa-edit"></i></div>
+                        <h4>Registrasi</h4>
+                        <p>Pendaftaran peserta untuk showcase HSR dan turnamen MLBB dibuka.</p>
+                        <span class="date-range">1 - 10 Juni 2025</span>
                     </div>
-                    <div class="schedule-phase-card active"> <!-- Fase aktif -->
+                    <div class="schedule-phase-card timeline-item active"> <!-- Fase aktif -->
                         <div class="phase-status">Saat Ini</div>
-                        <div class="phase-icon">⚖️</div>
-                        <h4>Periode Penilaian Juri</h4>
-                        <span class="date-range">11 - 25 September 2024</span>
-                        <p>Tim juri GC Gaming akan memverifikasi dan menilai data yang masuk dengan seksama.</p>
+                        <div class="phase-icon"><i class="fas fa-video"></i></div>
+                        <h4>Pengiriman Video Showcase HSR & Kualifikasi MLBB</h4>
+                        <p>Peserta HSR mengirimkan video. Tim MLBB menjalani babak kualifikasi.</p>
+                        <span class="date-range">11 - 20 Juni 2025</span>
                     </div>
-                    <div class="schedule-phase-card">
-                        <div class="phase-icon">📢</div>
-                        <h4>Pengumuman Pemenang</h4>
-                        <span class="date-range">30 September 2024</span>
-                        <p>Pengumuman Traveler Terkuat GChampion dan para pemenang kategori! Pantau terus!</p>
+                    <div class="schedule-phase-card timeline-item">
+                        <div class="phase-icon"><i class="fas fa-trophy"></i></div>
+                        <h4>Penentuan Pemenang & Final MLBB</h4>
+                        <p>Pengumuman pemenang showcase HSR dan babak final turnamen MLBB.</p>
+                        <span class="date-range">25 - 30 Juni 2025</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- BAGIAN KETIGA: KARAKTER & META -->
+            <section class="section" id="karakter-meta">
+                <h2 class="section-title-gchampion">Fokus Season Ini</h2>
+                <div class="karakter-meta-grid">
+                    <div class="karakter-card">
+                        <img src="the-herta-character_cut_in_icon.png" alt="Karakter Herta Honkai Star Rail" class="karakter-image">
+                        <div class="karakter-info">
+                            <h3>Honkai Star Rail Showcase</h3>
+                            <p class="karakter-name">Karakter yang dipertandingkan season ini: <strong>The Herta</strong></p>
+                            <a href="path/to/panduan-build-herta.pdf" target="_blank" class="button-modern button-accent karakter-button">
+                                <i class="fas fa-book-open"></i> Akses Panduan Build Herta Disini
+                            </a>
+                        </div>
+                    </div>
+                    <div class="karakter-card">
+                        <img src="miya_moonlight_archer_transparen.png" alt="Meta Miya Mobile Legends" class="karakter-image">
+                        <div class="karakter-info">
+                            <h3>Mobile Legends: Bang Bang Tournament</h3>
+                            <p class="karakter-name"><strong>Meta Mobile Legends Update Juni 2025</strong></p>
+                            <a href="path/to/panduan-meta-mlbb.pdf" target="_blank" class="button-modern button-accent karakter-button">
+                                <i class="fas fa-chart-line"></i> Akses Panduan Meta Update MLBB Disini!
+                            </a>
+                        </div>
                     </div>
                 </div>
             </section>
 
-            <section class="section gchampion-leaderboard-chart" id="leaderboard">
-                 <h2 class="section-title-gchampion" style="margin-bottom: 25px;">Leaderboard Peserta Teratas</h2>
-                 <p class="leaderboard-update-info">📊 Peringkat berdasarkan skor akumulasi dari berbagai kriteria penilaian. <i>Update setiap 3 hari.</i></p>
+            <!-- BAGIAN KEEMPAT: LEADERBOARD -->
+            <section class="section gchampion-leaderboard-section" id="leaderboard">
+                <h2 class="section-title-gchampion">Leaderboard GChampion</h2>
 
-                <div class="leaderboard-item">
-                    <span class="leaderboard-rank rank-1">1</span>
-                    <div class="leaderboard-avatar">🌟</div> <!-- Emoji Bintang untuk rank 1 -->
-                    <div class="leaderboard-info">
-                        <span class="leaderboard-name">Traveler PaimonMax</span>
-                        <span class="leaderboard-metric">UID: 800xxxxxx</span>
-                        <div class="leaderboard-bar-container">
-                            <div class="leaderboard-bar-fill" style="width: 95%; background: var(--bar-rank-1);"></div>
+                <div class="leaderboard-hsr">
+                    <h3 class="leaderboard-game-title">Honkai Star Rail Showcase</h3>
+                    <div class="leaderboard-tables-container">
+                        <div class="leaderboard-table-wrapper">
+                            <h4>F2P Class Rank</h4>
+                            <table class="leaderboard-table">
+                                <thead>
+                                    <tr>
+                                        <th>Rank</th>
+                                        <th>Nama Peserta</th>
+                                        <th>Karakter</th>
+                                        <th>Skor</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Trailblazer Hemat</td>
+                                        <td>Herta</td>
+                                        <td>8500</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>HertaMyLove</td>
+                                        <td>Herta</td>
+                                        <td>8250</td>
+                                    </tr>
+                                    <!-- Tambah data F2P -->
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="leaderboard-table-wrapper">
+                            <h4>Premium Class Rank</h4>
+                            <table class="leaderboard-table">
+                                <thead>
+                                    <tr>
+                                        <th>Rank</th>
+                                        <th>Nama Peserta</th>
+                                        <th>Karakter</th>
+                                        <th>Skor</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Sultan HSR</td>
+                                        <td>Herta (E6S5)</td>
+                                        <td>9800</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>WhaleLord77</td>
+                                        <td>Herta (E4S3)</td>
+                                        <td>9550</td>
+                                    </tr>
+                                    <!-- Tambah data Premium -->
+                                </tbody>
+                            </table>
                         </div>
                     </div>
-                    <span class="leaderboard-score">9580 Pts</span>
                 </div>
 
-                <div class="leaderboard-item">
-                    <span class="leaderboard-rank rank-2">2</span>
-                    <div class="leaderboard-avatar">🔶</div>
-                    <div class="leaderboard-info">
-                        <span class="leaderboard-name">ArchonSlayer_22</span>
-                        <span class="leaderboard-metric">UID: 801xxxxxx</span>
-                        <div class="leaderboard-bar-container">
-                            <div class="leaderboard-bar-fill" style="width: 92%; background: var(--bar-rank-2);"></div>
-                        </div>
-                    </div>
-                    <span class="leaderboard-score">9250 Pts</span>
-                </div>
-                
-                <div class="leaderboard-item">
-                    <span class="leaderboard-rank rank-3">3</span>
-                    <div class="leaderboard-avatar">🌀</div>
-                    <div class="leaderboard-info">
-                        <span class="leaderboard-name">KleeDaBest</span>
-                        <span class="leaderboard-metric">UID: 802xxxxxx</span>
-                        <div class="leaderboard-bar-container">
-                            <div class="leaderboard-bar-fill" style="width: 88%; background: var(--bar-rank-3);"></div>
-                        </div>
-                    </div>
-                    <span class="leaderboard-score">8810 Pts</span>
-                </div>
-
-                <div class="leaderboard-item">
-                    <span class="leaderboard-rank">4</span>
-                    <div class="leaderboard-avatar">⚔️</div>
-                    <div class="leaderboard-info">
-                        <span class="leaderboard-name">AbyssConqueror</span>
-                        <span class="leaderboard-metric">UID: 803xxxxxx</span>
-                        <div class="leaderboard-bar-container">
-                            <div class="leaderboard-bar-fill" style="width: 85%; background: var(--bar-rank-default);"></div>
-                        </div>
-                    </div>
-                    <span class="leaderboard-score">8530 Pts</span>
-                </div>
-                 <div class="leaderboard-item">
-                    <span class="leaderboard-rank">5</span>
-                    <div class="leaderboard-avatar">💡</div>
-                    <div class="leaderboard-info">
-                        <span class="leaderboard-name">GanyuSimp_ID</span>
-                        <span class="leaderboard-metric">UID: 804xxxxxx</span>
-                        <div class="leaderboard-bar-container">
-                            <div class="leaderboard-bar-fill" style="width: 82%; background: var(--bar-rank-default);"></div>
-                        </div>
-                    </div>
-                    <span class="leaderboard-score">8290 Pts</span>
+                <div class="leaderboard-mlbb">
+                    <h3 class="leaderboard-game-title">Mobile Legends Tournament</h3>
+                    <h4>Update Squad Terdaftar (Turnamen Offline)</h4>
+                    <ul class="squad-list">
+                        <li><i class="fas fa-users"></i> Tim Macan Putih</li>
+                        <li><i class="fas fa-users"></i> Garuda Esports</li>
+                        <li><i class="fas fa-users"></i> Naga Api Squad</li>
+                        <li><i class="fas fa-users"></i> Komodo Gaming</li>
+                        <!-- Tambah nama squad -->
+                    </ul>
+                    <p class="leaderboard-update-info"><i>Jadwal pertandingan akan diumumkan segera.</i></p>
                 </div>
             </section>
 
-            <section class="section" id="sorotan-peserta">
-                <h2 class="section-title-gchampion">Sorotan Peserta & Prestasi</h2>
-                <div class="participant-highlights-grid">
-                    <div class="highlight-card">
-                        <div class="highlight-player">
-                            <div class="highlight-player-avatar">🔥</div>
-                            <span class="highlight-player-name">Traveler HuTaoEnjoyer</span>
+            <!-- BAGIAN KELIMA: CARA MENDAPATKAN TIKET -->
+            <section class="section" id="cara-tiket">
+                <div class="registration-info get-ticket-section"> <!-- Class registration-info di-override -->
+                    <h3 class="section-title-gchampion">Cara Mendapatkan Tiket Partisipasi</h3>
+                    <div class="ticket-info-flex">
+                        <div class="ticket-method">
+                            <i class="fas fa-wallet ticket-icon"></i>
+                            <h4>Top Up & Dapatkan Tiket</h4>
+                            <p>Lakukan top up minimal <strong>Rp 150.000,-</strong> di GC Gaming Store untuk mendapatkan 1 tiket partisipasi GChampion (HSR Showcase atau Pendaftaran Tim MLBB).</p>
                         </div>
-                        <h4 class="highlight-title">Damage Tertinggi Harian!</h4>
-                        <p class="highlight-description">Mencatatkan damage charge attack Hu Tao sebesar 1.2 Juta pada Weekly Boss! Sungguh luar biasa!</p>
-                        <span class="highlight-timestamp">Diposting: 15 Sep 2024</span>
-                    </div>
-                    <div class="highlight-card">
-                         <div class="highlight-player">
-                            <div class="highlight-player-avatar">❄️</div>
-                            <span class="highlight-player-name">AyakaMyQueen</span>
+                        <div class="ticket-method">
+                            <i class="fas fa-gift ticket-icon"></i>
+                            <h4>Ikuti Giveaway di Sosial Media</h4>
+                            <p>Pantau terus akun sosial media kami! Tiket partisipasi juga akan dibagikan secara gratis melalui giveaway eksklusif.</p>
+                            <div class="social-media-links-tiket">
+                                <a href="#" title="Instagram GC Gaming"><i class="fab fa-instagram"></i></a>
+                                <a href="#" title="Facebook GC Gaming"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#" title="TikTok GC Gaming"><i class="fab fa-tiktok"></i></a>
+                            </div>
                         </div>
-                        <h4 class="highlight-title">Spiral Abyss Clear Cepat!</h4>
-                        <p class="highlight-description">Menyelesaikan Spiral Abyss Floor 12 Chamber 3 hanya dalam 35 detik dengan tim permafreeze Ayaka!</p>
-                        <span class="highlight-timestamp">Diposting: 14 Sep 2024</span>
-                    </div>
-                     <div class="highlight-card">
-                         <div class="highlight-player">
-                            <div class="highlight-player-avatar">🎨</div>
-                            <span class="highlight-player-name">AlbedoCreations</span>
-                        </div>
-                        <h4 class="highlight-title">Koleksi Karakter Terlengkap</h4>
-                        <p class="highlight-description">Memamerkan koleksi seluruh karakter bintang 5 yang telah dirilis hingga saat ini. Dedikasi yang mengagumkan!</p>
-                        <span class="highlight-timestamp">Diposting: 13 Sep 2024</span>
                     </div>
                 </div>
             </section>
-            
-            <section class="section" id="cara-partisipasi">
-                <div class="registration-info">
-                    <h3 class="section-title-gchampion">Cara Berpartisipasi</h3>
-                    <p><span class="info-icon">ℹ️</span> Pendaftaran untuk GChampion: Genshin Showcase Season ini telah <strong>DITUTUP</strong>. Terima kasih atas antusiasme yang luar biasa! Nantikan informasi pemenang dan event GChampion berikutnya.</p>
-                    <p>Bagi yang sudah mendaftar, pastikan Anda telah mengirimkan semua data yang diperlukan sesuai panduan. Pengumuman pemenang akan dilakukan pada tanggal yang telah ditentukan.</p>
-                    <a href="#" class="button-primary-action">Lihat Panduan (Arsip)</a>
+
+            <!-- BAGIAN KEENAM: BUTTON WHATSAPP & TOP UP -->
+            <section class="section" id="kontak-topup">
+                <div class="contact-topup-buttons">
+                    <a href="https://wa.me/NOMOR_WHATSAPP_ADMIN" target="_blank" class="button-modern button-whatsapp">
+                        <i class="fab fa-whatsapp"></i> Hubungi Admin via WhatsApp
+                    </a>
+                    <a href="index.html#produk" class="button-modern button-accent-alt"> <!-- Pastikan ada ID #produk di index.html -->
+                        <i class="fas fa-shopping-cart"></i> Kunjungi Halaman Top Up
+                    </a>
+                </div>
+            </section>
+
+            <!-- BAGIAN TERAKHIR: FREQUENTLY ASKED QUESTIONS (FAQ) -->
+            <section class="section faq-section-gchampion" id="faq">
+                <h2 class="section-title-gchampion">Frequently Asked Questions (FAQ)</h2>
+                <div class="faq-container-gchampion">
+                    <details class="faq-item-gchampion">
+                        <summary>Misal udah pernah top up tipis-tipis apakah bisa masuk F2P Class (HSR Showcase)?</summary>
+                        <div class="faq-content-gchampion">
+                            <p>Ya, untuk F2P Class di Honkai Star Rail Showcase, kami akan melihat riwayat total top up Anda di GC Gaming Store untuk game HSR. Batasan spesifik akan diinformasikan saat periode registrasi. "Tipis-tipis" relatif, jadi pastikan Anda memeriksa detailnya nanti. Fokus utama F2P Class adalah untuk pemain dengan investasi finansial minimal hingga sedang.</p>
+                        </div>
+                    </details>
+                    <details class="faq-item-gchampion">
+                        <summary>Apakah bisa mengirimkan video showcase HSR-nya 2 kali?</summary>
+                        <div class="faq-content-gchampion">
+                            <p>Setiap peserta hanya diperbolehkan mengirimkan satu video showcase HSR per akun yang didaftarkan. Pastikan video yang Anda kirim adalah yang terbaik dan sudah sesuai dengan semua ketentuan yang berlaku.</p>
+                        </div>
+                    </details>
+                    <details class="faq-item-gchampion">
+                        <summary>Untuk masuk Premium Class HSR Showcase apakah ada minimal spek karakter?</summary>
+                        <div class="faq-content-gchampion">
+                            <p>Tidak ada batasan minimal spesifikasi karakter untuk masuk Premium Class. Kelas ini terbuka untuk semua pemain yang merasa build karakternya sudah sangat optimal, terlepas dari apakah itu hasil investasi besar atau grinding yang luar biasa. Namun, persaingan di Premium Class tentunya akan sangat ketat dengan build karakter yang sangat kuat.</p>
+                        </div>
+                    </details>
                 </div>
             </section>
         </div>
@@ -197,19 +1019,18 @@
             <div class="footer-column">
                 <h4>Tautan GChampion</h4>
                 <ul>
-                    <li><a href="#tentang">Tentang Showcase</a></li>
-                    <li><a href="#jadwal">Linimasa Kompetisi</a></li>
-                    <li><a href="#leaderboard">Leaderboard Teratas</a></li>
-                    <li><a href="#sorotan-peserta">Sorotan Peserta</a></li>
-                    <li><a href="#cara-partisipasi">Cara Partisipasi</a></li>
+                    <li><a href="#jadwal">Timeline Season</a></li>
+                    <li><a href="#karakter-meta">Karakter & Meta</a></li>
+                    <li><a href="#leaderboard">Leaderboard</a></li>
+                    <li><a href="#cara-tiket">Cara Dapat Tiket</a></li>
+                    <li><a href="#faq">FAQ</a></li>
                 </ul>
             </div>
             <div class="footer-column">
                 <h4>Dukungan & Info</h4>
                 <ul>
-                    <li><a href="#">Hubungi Panitia GChampion</a></li>
+                    <li><a href="https://wa.me/NOMOR_WHATSAPP_ADMIN" target="_blank">Hubungi Panitia GChampion</a></li>
                     <li><a href="#">Peraturan & Ketentuan</a></li>
-                    <li><a href="#">FAQ GChampion</a></li>
                     <li><a href="#">Privasi & Kebijakan</a></li>
                 </ul>
             </div>
@@ -217,10 +1038,10 @@
                 <h4>Ikuti Kami</h4>
                  <p>Dapatkan update terbaru GChampion dan event lainnya dari GC Gaming Store.</p>
                  <div class="footer-social-icons">
-                     <a href="#" title="Facebook">FB</a> <!-- Ganti dengan ikon Font Awesome/SVG -->
-                     <a href="#" title="Instagram">IG</a>
-                     <a href="#" title="Discord">DSCD</a>
-                     <a href="#" title="YouTube">YT</a>
+                     <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                     <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                     <a href="#" title="Discord"><i class="fab fa-discord"></i></a>
+                     <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
                  </div>
             </div>
         </div>
@@ -230,17 +1051,16 @@
     </footer>
 
     <script>
+        // Script smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const targetId = this.getAttribute('href');
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
-                    // Consider header height if it's sticky and obscures content
                     const headerOffset = document.querySelector('header')?.offsetHeight || 0;
                     const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
                     const offsetPosition = elementPosition - headerOffset - 20; // Extra 20px padding
-
                     window.scrollTo({
                         top: offsetPosition,
                         behavior: 'smooth'
